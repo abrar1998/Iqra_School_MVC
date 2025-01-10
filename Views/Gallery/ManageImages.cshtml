@@ -1,0 +1,135 @@
+﻿@{
+    ViewData["Title"] = "Manage Images";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<div class="container-fluid mt-4">
+    <!-- Page Heading -->
+    <div class="card shadow-lg mb-4" id="photoSection">
+        <div class="card-header bg-primary text-white text-center">
+            <h4 class="mb-0"><i class="fas fa-images"></i> Manage Photos</h4>
+        </div>
+        <div class="card-body">
+            <!-- Image Upload Form -->
+            <form id="imageForm" method="post" enctype="multipart/form-data">
+                <div class="row g-3">
+                    <!-- Select Album -->
+                    <div class="col-md-4">
+                        <label for="albumSelect" class="form-label"><i class="fas fa-folder-open"></i> Select Album <span class="text-danger">*</span></label>
+                        <select class="form-select border-primary" id="albumSelect" name="PCIDFK" required asp-items="ViewBag.Categories">
+                            <option selected disabled value="" >Choose an Album...</option>
+                            <!-- Replace with dynamic options -->
+                            
+                        </select>
+                    </div>
+
+                    <!-- Date -->
+                    <div class="col-md-4">
+                        <label for="imageDate" class="form-label"><i class="fas fa-calendar-alt"></i> Date <span class="text-danger">*</span></label>
+                        <input type="date" class="form-control border-primary" id="imageDate" name="PhotoDate" required>
+                    </div>
+
+                    <!-- Title -->
+                    <div class="col-md-4">
+                        <label for="imageTitle" class="form-label"><i class="fas fa-image"></i> Title <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control border-primary" id="imageTitle" name="Title" placeholder="Enter image title" required>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="col-md-6">
+                        <label for="imageDescription" class="form-label"><i class="fas fa-align-left"></i> Description</label>
+                        <textarea class="form-control border-primary" id="imageDescription" name="Description" rows="3" placeholder="Enter image description (Required)" required ></textarea>
+                    </div>
+
+                    <!-- Image -->
+                    <div class="col-md-6">
+                        <label for="imageFile" class="form-label"><i class="fas fa-image"></i> Upload Image <span class="text-danger">*</span> <span class="text-muted">(Max: 2 MB)</span></label>
+                        <input type="file" class="form-control border-primary" id="imageFile" name="Image" accept="image/*" required>
+                    </div>
+                </div>
+
+                <!-- Submit and Reset Buttons -->
+                <div class="row mt-4">
+                    <div class="col text-center">
+                        <button type="button" id="submitImg" class="btn btn-success me-3"><i class="fas fa-upload"></i> Upload Image</button>
+                        <button type="reset" class="btn btn-danger"><i class="fas fa-undo"></i> Reset</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <hr />
+    <!-- Existing Images Section -->
+    <!-- View Images Button (Initially visible) -->
+    <div class="text-center">
+        <button id="viewImagesBtn" class="btn btn-primary">
+            View Photos
+        </button>
+    </div>
+
+    <!-- Album Type Dropdown (Initially hidden) -->
+    <div class="text-center mt-3" id="albumDropdown" style="display: none;">
+        <select id="albumSelect2" class="form-select w-50 mx-auto" asp-items="ViewBag.Categories">
+            <option value="" selected disabled>Select Album</option>
+            <!-- Add album options dynamically if needed -->
+        </select>
+    </div>
+
+    <!-- Table to Display Images (Initially hidden) -->
+    <div class="card shadow-lg mt-4" id="imagesTable" style="display: none;">
+        <div class="card-header bg-dark text-white text-center">
+            <h4 class="mb-0"><i class="fas fa-images"></i> Uploaded Images</h4>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover table-striped table-bordered">
+                    <thead class="bg-info text-white">
+                        <tr>
+                            <th>S.No</th>
+                            <th>Image</th>
+                            <th>Date</th>
+                            <th>View Image</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="imageTableBody">
+                        <!-- Rows will be added dynamically here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+
+@* all async operations performed in js file *@
+<script src="~/js/Gallery.js" defer asp-append-version="true"></script>
+
+<style>
+    /* Add some custom styling for better appearance */
+    .form-label {
+        font-weight: bold;
+    }
+
+    .btn {
+        border-radius: 30px;
+    }
+
+    .card-header {
+        border-bottom: 2px solid #dee2e6;
+    }
+
+    .card-body {
+        background-color: #f8f9fa;
+    }
+
+    table th,
+    table td {
+        vertical-align: middle;
+    }
+</style>
+
+                    

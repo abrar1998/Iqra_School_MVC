@@ -1,0 +1,206 @@
+﻿@model List<SchoolProj.Models.Domain.Downloads>
+
+@{
+    ViewData["Title"] = "DownLoadList";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+<style>
+    /* Fullscreen styling */
+    .container-fluid {
+        min-height: 100vh;
+        background-color: #eef2f7;
+        padding: 20px;
+        border-radius: 8px;
+    }
+
+    /* Table styling */
+    .table {
+        margin-top: 20px;
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: #d6e9f9 !important;
+    }
+
+    /* Header styles */
+    .table-primary {
+        background-color: #0056b3 !important;
+    }
+
+        .table-primary th {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+        }
+
+    /* Text alignment */
+    th, td {
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    /* Button hover effects */
+    .btn {
+        transition: all 0.3s ease;
+    }
+
+        .btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+</style>
+
+
+<div class="container-fluid mt-3 mb-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-primary fw-bold">Downloads List</h2>
+        <a asp-action="AddDownload" asp-controller="Downloads" class="btn btn-success btn-lg">
+            <i class="fas fa-plus-circle"></i> Add New Download
+        </a>
+    </div>
+
+    <div class="table-responsive mb-5">
+        <table class="table table-hover table-bordered">
+            <thead class="table-primary text-white">
+                <tr>
+                    <th>S.No</th>
+                    <th>Date</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>File</th>
+
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (!Model.Any())
+                {
+                    <tr>
+                        <td colspan="7" class="text-center text-danger">No downloads found.</td>
+                    </tr>
+                }
+                else
+                {
+                    int sno = 1;
+                    foreach (var item in Model)
+                    {
+                        <tr id="download_@item.DID">
+                            <td>@sno</td>
+                            <td>
+                                @{
+                                    DateTime parsedDate;
+                                    if (DateTime.TryParse(item.DDate, out parsedDate))
+                                    {
+                                        @parsedDate.ToString("dd-MMM-yyyy")
+                                    }
+                                    else
+                                    {
+                                        @item.DDate
+                                        // Fallback if the string cannot be parsed
+                                    }
+                                }
+                            </td>
+
+
+                            <td>@item.Title</td>
+                            <td>@item.Description</td>
+
+                            <td>
+                                <a href="@item.FilePath" class="btn text-primary" target="_blank">
+                                    <i class="fas fa-file-alt"></i> View File
+                                </a>
+                            </td>
+
+                            <td>
+                                <div class="d-flex justify-content-evenly align-items-center ">
+                                    @* <a asp-action="GetNotice" asp-route-id="@item.DID" class="btn text-primary  me-2"> *@
+                                    @*     <i class="fas fa-info-circle"></i> *@
+                                    @* </a> *@
+                                    <button onclick="deleteDownload('@item.DID')" class="btn text-danger ">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        sno++;
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+<script>
+    function deleteDownload(downloadId) {
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this Download!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+            if (willDelete) {
+                  $('#loader').show();
+                $.ajax({
+                    type: 'POST',
+                    url: "@Url.Action("DeleteDownload", "Downloads")",
+                    data: { dId: downloadId },
+                    success: function (response) {
+                        if (response.isSuccess && response.status === 1) {
+                            // Remove the row from the table
+                            $('#download' + downloadId).remove();
+
+                            // swal("Success!", response.message || "download has been deleted.", {
+                            //     icon: "success",
+                            // });
+                            $('#loader').hide();
+                                swal({
+                                    
+                                        title: "Success!",
+                                        text: response.message || "download has been deleted.",
+                                        icon: "success",
+                                        buttons: {
+                                            ok: {
+                                                text: "OK",
+                                                value: true,
+                                                className: "btn btn-primary"
+                                            }
+                                        }
+                                    }).then((value) => {
+                                        if (value) {
+                                            window.location.reload();
+                                        }
+                                    });
+
+                        } else if (response.Status === 0) {
+                             $('#loader').hide();
+                            // Display error message from the server
+                            swal("Error!", response.Message || "Failed to delete the download.", {
+                                icon: "error",
+                            });
+                        } else {
+                             $('#loader').hide();
+                            // Handle unexpected status
+                            swal("Technical Error!", response.error, {
+                                icon: "error",
+                            });
+                        }
+                    },
+                    error: function () {
+                         $('#loader').hide();
+                        swal("Error!", "An error occurred while processing your request.", {
+                            icon: "error",
+                        });
+                    },
+                });
+            } else {
+                $("#loader").hide();
+                swal("Canceled", "Download  deletion has been canceled.", {
+                    icon: "info",
+                });
+            }
+        });
+    }
+</script>

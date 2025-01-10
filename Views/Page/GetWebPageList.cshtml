@@ -1,0 +1,112 @@
+﻿@model IEnumerable<SchoolProj.Models.Domain.Page>
+
+@{
+    ViewData["Title"] = "GetWebPageList";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<div class="container-fluid mt-3 mb-5">
+    <div class="d-flex justify-content-center align-items-center mb-4">
+        <h2 class="text-primary fw-bold"> Manage Web Pages</h2>
+        @* <a asp-action="AddNotice" asp-controller="Notice" class="btn btn-success btn-lg"> *@
+        @*     <i class="fas fa-plus-circle"></i> Manage Web Pages *@
+        @* </a> *@
+    </div>
+
+    <div class="table-responsive mb-5">
+        <table class="table table-hover table-bordered">
+            <thead class="table-primary text-white">
+                <tr>
+                    <th>S.No</th>
+                    @* <th>Page Id</th> *@
+                    <th>Page Name</th>
+                    <th>Page Title</th>
+                   <th>Action</th>
+               
+                </tr>
+            </thead>
+            <tbody>
+                @if (!Model.Any())
+                {
+                    <tr>
+                        <td colspan="7" class="text-center text-danger">No page found.</td>
+                    </tr>
+                }
+                else
+                {
+                    int sno = 1;
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@sno</td>
+                            @* <td>@item.ID</td> *@
+                            <td>
+                               @item.PageName
+                            </td>
+
+
+                            <td>@item.PageTitle</td>
+                           
+                         
+                            <td>
+                                <div class="d-flex justify-content-evenly align-items-center ">
+                                    <a asp-action="EditWebPage" asp-controller="Page" asp-route-id="@item.ID" class="me-2">
+                                        <i class="fas fa-edit"></i>
+
+                                    </a>
+                                   
+                                </div>
+                            </td>
+                        </tr>
+                        sno++;
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+    /* Fullscreen styling */
+    .container-fluid {
+        min-height: 100vh;
+        background-color: #eef2f7;
+        padding: 20px;
+        border-radius: 8px;
+    }
+
+    /* Table styling */
+    .table {
+        margin-top: 20px;
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: #d6e9f9 !important;
+    }
+
+    /* Header styles */
+    .table-primary {
+        background-color: #0056b3 !important;
+    }
+
+        .table-primary th {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+        }
+
+    /* Text alignment */
+    th, td {
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    /* Button hover effects */
+    .btn {
+        transition: all 0.3s ease;
+    }
+
+        .btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+</style>

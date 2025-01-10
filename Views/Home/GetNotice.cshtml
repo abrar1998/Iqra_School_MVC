@@ -1,0 +1,129 @@
+﻿@model SchoolProj.Models.DTO.NoticeDTO
+
+@{
+    ViewData["Title"] = "GetNotice";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    // Parse the NDate property
+    // DateTime parsedDate;
+    // bool isValidDate = DateTime.TryParseExact(
+    //     Model.NDate,
+    //     "dd-MM-yyyy HH:mm:ss",
+    //     System.Globalization.CultureInfo.InvariantCulture,
+    //     System.Globalization.DateTimeStyles.None,
+    //     out parsedDate);
+}
+
+@* Page header start *@
+<div class="container-fluid bg-breadcrumb" 
+     style="height: 200px; 
+            background: linear-gradient(rgba(19, 53, 123, 0.5), rgba(19, 53, 123, 0.5)), 
+                        url('/Images/iqrabg.jpg') no-repeat center center; 
+            background-size: cover;">
+    <div class="d-flex justify-content-center align-items-center h-100">
+        <h3 class="text-white mb-0" style="
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 3px;">
+            Notice Details
+        </h3>
+    </div>
+</div>
+
+@* Page header end *@
+
+<div class="text-center mt-2">
+    <p class="text-muted" style="font-size: 1.1rem;">Stay informed with the latest updates and important information.</p>
+</div>
+
+<div class="container py-5 mb-lg-5">
+    <!-- Notice Image Section -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="shadow-lg">
+                <img src="@Model.ThumbNail" class="img-fluid rounded" alt="Notice Image" style="max-height: 400px; width: 100%; object-fit: cover;">
+            </div>
+        </div>
+    </div>
+
+    <!-- Notice Details Section -->
+    <div class="row mb-lg-5">
+        <!-- Title and Date -->
+        <div class="col-12 mb-3">
+            <h3 class="text-primary fw-bold">@Model.Title</h3>
+            @* <p class="text-muted">Date: <strong>@(isValidDate ? parsedDate.ToString("dd MMM yyyy") : "Invalid Date")</strong></p> *@
+            <p class="text-muted">Date: <strong>@Model.NDate</strong></p>
+        </div>
+
+        <!-- Description with Scrollable Content -->
+        @if (!string.IsNullOrEmpty(Model.Description))
+         {
+        <div class="col-12 mb-3">
+                
+            <div class="p-4 bg-light shadow-sm">
+                @* 
+                <h5 class="fw-bold">Description</h5> *@
+                @* <p>@Model.Description</p> *@
+                
+                    @Html.Raw(Model.Description)
+                
+            </div>
+        </div>
+        }
+
+        <!-- Download File Button -->
+        @if (Model.IsFile == "1")
+        {
+                <div class="col-12 mt-3">
+                    <div class="d-flex justify-content-center">
+                        <a href="@Url.Content(Model.FilePath)" class="btn btn-success btn-lg px-5" download>
+                            <i class="fas fa-download"></i> Download File
+                        </a>
+                    </div>
+                </div>
+        }
+    </div>
+</div>
+
+<style>
+    h1 {
+        font-family: 'Poppins', sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    .bg-light {
+        border-left: 5px solid #007bff;
+    }
+
+    .btn-lg {
+        box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+        transition: all 0.3s ease-in-out;
+    }
+
+    .btn-lg:hover {
+        background-color: #0056b3;
+        box-shadow: 0 8px 20px rgba(0, 86, 179, 0.4);
+    }
+
+    .scrollable-div {
+        max-height: 400px;
+        overflow-y: auto;
+        padding: 10px;
+    }
+
+    .scrollable-div::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .scrollable-div::-webkit-scrollbar-thumb {
+        background: #ccc;
+        border-radius: 10px;
+    }
+
+    .scrollable-div::-webkit-scrollbar-thumb:hover {
+        background: #999;
+    }
+</style>

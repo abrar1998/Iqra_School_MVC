@@ -1,0 +1,178 @@
+﻿@model IEnumerable<SchoolProj.Models.Domain.Photos>
+
+@{
+
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    var sno = 1;
+}
+
+<style>
+    .modal-header {
+        border-bottom: 2px solid #0d6efd;
+    }
+
+    .modal-footer {
+        border-top: 2px solid #e9ecef;
+    }
+
+</style>
+
+<div class="container-fluid mt-1">
+    @* <h3 class="text-center my-4 mt-1">Manage Categories</h3> *@
+    <div class="card-header bg-success text-white text-center mb-2" style="height:40px"> <h4>Manage Categories</h4> </div>
+
+    <!-- Category Management Form -->
+    <div class="card shadow-lg mb-4">
+        <div class="card-header bg-gradient-primary text-dark text-center">
+            <h4 class="mb-0"><i class="fas fa-folder-plus"></i> Add New Category</h4>
+        </div>
+        <div class="card-body">
+            <form id="catForm" method="post" enctype="multipart/form-data">
+                <div class="form-row row">
+                    <div class="form-group col-md-4">
+                        <label for="categoryName"><i class="fas fa-tag"></i> Category Name <span class="text-danger">*</span> </label>
+                        <input type="text" class="form-control border-primary" id="categoryName" required name="CategoryName" placeholder="Enter category name">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="CategoryDate"><i class="fas fa-calendar-alt"></i> Date <span class="text-danger">*</span> </label>
+                        <input type="date" name="CategoryDate" class="form-control border-primary" required id="CategoryDate">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="Thumbnail"><i class="fas fa-image"></i> Album Thumbnail <span class="text-muted">(Max: 1 MB)</span> <span class="text-danger">*</span> </label>
+                        <input type="file" name="Thumbnail" class="form-control-file border" required id="Thumbnail">
+                    </div>
+                </div>
+                <div class="form-row d-flex justify-content-center align-items-center mt-3">
+                    <button type="button" id="submitBtn" class="btn btn-primary mr-3 me-3"><i class="fas fa-plus-circle"></i> Add Category</button>
+                    <button type="reset" class="btn btn-danger"><i class="fas fa-undo"></i> Reset</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Existing Table of Categories -->
+    @if (Model.Count() > 0)
+    {
+        <div class="card shadow-lg mt-4 mb-5">
+            <div class="card-header bg-gradient-dark text-dark text-center">
+                <h4 class="mb-0"><i class="fas fa-table"></i> Existing Categories</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover table-striped table-bordered">
+                        <thead class="bg-info text-white">
+                            <tr>
+                                <th>S.No</th>
+                                <th>Thumbnail</th>
+                                @* <th>Category ID</th> *@
+                                <th>Category Name</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr id="slide_@item.PCIDFK">
+                                    <td>@sno</td>
+                                    <td>
+                                        <img src="@item.ThumbNail" loading="lazy" alt="Thumbnail" class="img-thumbnail" style="width: 90px; height: 80px;">
+                                    </td>
+                                    @* <td>@Html.DisplayFor(modelItem => item.PCIDFK)</td> *@
+                                    <td>@Html.DisplayFor(modelItem => item.PhotoCatName)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.CatDate)</td>
+                                    <td>
+                                        <a href="#" class="text-primary mr-2 btn-edit-category" title="Edit" data-id="@item.PCIDFK">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+
+                                        @* <a href="#" class="btn btn-sm text-danger" title="Delete" onclick="deleteCategory('@item.PCIDFK')"><i class="fas fa-trash-alt"></i></a> *@
+                                        <a href="#" class="btn btn-sm text-danger btn-delete-category" data-id="@item.PCIDFK" title="Delete">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </a>
+
+                                    </td>
+                                </tr>
+                                sno++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-warning text-center mt-4">
+            <i class="fas fa-exclamation-circle"></i> No categories available. Please add a new category.
+        </div>
+    }
+
+
+</div>
+
+<!-- Edit Photo Category Modal -->
+<!-- Edit Photo Category Modal -->
+<div class="modal fade" id="editCategoryModal" tabindex="-1" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content shadow-lg">
+            <!-- Modal Header -->
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="editCategoryModalLabel">
+                    <i class="fas fa-edit"></i> Edit Photo Category
+                </h5>
+                <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <!-- Modal Body -->
+            <form id="editCategoryForm" class="p-3" method="post" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <input type="hidden" id="editCategoryId" name="CategoryId">
+
+                    <!-- Category Name -->
+                    <div class="form-group mb-3">
+                        <label for="pcategoryName" class="form-label">Category Name</label>
+                        <input type="text" class="form-control border-primary" id="pcategoryName" name="CategoryName" placeholder="Enter category name" required>
+                    </div>
+
+                    <!-- Updated On -->
+                    <div class="form-group mb-3">
+                        <label for="pcategoryDate" class="form-label">Updated On</label>
+                        <input type="date" class="form-control border-primary" id="pcategoryDate" name="CategoryDate" required>
+                    </div>
+
+                    <!-- New Thumbnail -->
+                    <div class="form-group mb-3">
+                        <label for="pthumbnail" class="form-label">New Thumbnail</label>
+                        <input type="file" class="form-control border-primary" id="pthumbnail" name="Thumbnail">
+                    </div>
+
+                    <!-- Existing Thumbnail -->
+                    <div class="form-group mb-3">
+                        <label class="form-label">Existing Thumbnail</label>
+                        <div id="pexistingThumbnail" class="text-center">
+                            <img src="placeholder.jpg" loading="lazy" alt="Existing Thumbnail" class="img-thumbnail rounded shadow" style="max-width: 150px;">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="fas fa-times"></i> Cancel
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Save Changes
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+@* all async operations performed in js file *@
+<script src="~/js/Gallery.js" defer asp-append-version="true"></script> 

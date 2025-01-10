@@ -1,0 +1,77 @@
+﻿@* to display notifications dynamically i have created separate js file named Nofications.js inside root folders Js folder go and check [Danish Hassan Dar]*@
+
+<style>
+    .notification {
+        /* position: relative; */
+        z-index: 1050; /* Higher than other elements */
+    }
+
+    .arrow-buttons {
+        z-index: 1050;
+    }
+
+    #viewAllNotifications{
+        z-index: 1050;
+    }
+    .notification-title {
+        z-index: 1050;
+    }
+
+</style>
+
+<div class="whats-new-container py-3">
+    <div class="whats-new d-flex" style="margin: 15px;">
+        <!-- Blinking What's New Text -->
+        <div class="title" style="margin: 0;" id="viewAllNotifications">
+            <a href="/Public/Notices" class="blinking-link text-white">What's New</a>
+        </div>
+        <div class="notification" id="notification">
+            <div class="notification-content" id="notificationContent">
+                <div class="notification-title" onclick="onNotificationClick(currentNotification.nid)">
+                    <span id="currentNotificationTitle">Loading...</span>
+                </div>
+            </div>
+            <div class="arrow-buttons">
+                <i class="fas fa-chevron-up" onclick="showPreviousNotification()"></i>
+                <i class="fas fa-chevron-down" onclick="showNextNotification()"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- View All Button (below notifications) -->
+    @* <div class="d-flex justify-content-center align-items-center px-3" id="viewAllContainer" style="display: none;"> *@
+    @*     <a asp-action="Notices" asp-controller="Public" id="viewAllNotifications" class="btn btn-primary btn-sm mt-2" onclick="onViewAllClick()">View All</a> *@
+    @* </div> *@
+</div>  
+
+@* <div class="whats-new-container py-3"> *@
+@*     <div class="whats-new d-flex" style="margin: 15px;"> *@
+@*         <div class="title" style="margin: 0;">What's New</div> *@
+@*         <div class="notification" id="notification"> *@
+@*             <div class="notification-content" id="notificationContent"> *@
+@*                 <div class="notification-title" onclick="onNotificationClick(currentNotification.nid)"> *@
+@*                     <span id="currentNotificationTitle">Loading...</span> *@
+@*                 </div> *@
+@*             </div> *@
+@*             <div class="arrow-buttons"> *@
+@*                 <i class="fas fa-chevron-up" onclick="showPreviousNotification()"></i> *@
+@*                 <i class="fas fa-chevron-down" onclick="showNextNotification()"></i> *@
+@*             </div> *@
+@*         </div> *@
+@*     </div> *@
+
+@*     <!-- View All Button (below notifications) --> *@
+@*     <div class="d-flex justify-content-center align-items-center px-3" id="viewAllContainer" style="display: none;"> *@
+@*         <a asp-action="Notices" asp-controller="Public" id="viewAllNotifications" class="btn btn-primary btn-sm mt-2" onclick="onViewAllClick()">View All</a> *@
+@*     </div> *@
+@* </div> *@
+
+<!-- Popup -->
+@* <div class="popup-overlay" id="popupOverlay" style="display: none;"> *@
+@*     <div class="popup-content"> *@
+@*         <button onclick="closePopup()">Close</button> *@
+@*         <p id="selectedNotificationMessage"></p> *@
+@*     </div> *@
+@* </div> *@
+
+ 

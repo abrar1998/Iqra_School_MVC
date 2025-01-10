@@ -1,0 +1,238 @@
+﻿@model SchoolProj.Models.DTO.NoticeDTO
+
+@{
+    ViewData["Title"] = "Notice Details";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    
+}
+
+<div class="container-fluid mt-2 mb-5 px-4" >
+    <!-- Page Title -->
+    <div class="row mb-4">
+        <div class="col-12 text-center">
+            <h2 class="text-primary fw-bold">Notice Details</h2>
+        </div>
+    </div>
+
+    <!-- Notice Information Card -->
+    <div class="row justify-content-center" style="margin-bottom:200px;">
+        <div class="col-lg-10 col-md-12">
+            <div class="card shadow-lg border-0">
+                <div class="card-body">
+                    
+
+                    <div class="row gx-4 gy-3">
+                        <!-- Notice Date -->
+                        <div class="col-md-6">
+                            <div class="fw-bold">@Html.DisplayName("Notice Date")</div>
+                            <div>
+                                @{
+                                    DateTime parsedDate;
+                                    if (DateTime.TryParse(Model.NDate, out parsedDate))
+                                    {
+                                        @parsedDate.ToString("dd-MMM-yyyy")
+                                    }
+                                    else
+                                    {
+                                        @Model.NDate
+                                        // Fallback if the string cannot be parsed
+                                    }
+                                }
+                            </div>
+                        </div>
+
+                        <!-- Notice Title -->
+                        <div class="col-md-6">
+                            <div class="fw-bold">@Html.DisplayName("Notice Title")</div>
+                            <div>@Html.DisplayFor(model => model.Title)</div>
+                        </div>
+
+                        <!-- Notice Description -->
+                        <div class="col-md-6">
+                            <div class="fw-bold">@Html.DisplayName("Notice Description")</div>
+                            <div class="border rounded p-3 bg-light" style="height: 200px; overflow-y: auto;">
+                                @* @Html.DisplayFor(model => model.Description) *@
+                                @Html.Raw(Model.Description)
+                            </div>
+                        </div>
+
+                        <!-- Thumbnail -->
+                        <div class="col-md-6">
+                            <div class="fw-bold">@Html.DisplayName("Notice Thumbnail")</div>
+                            <div>
+                                @if (!string.IsNullOrEmpty(Model.ThumbNail))
+                                {
+                                    <img src="@Model.ThumbNail" alt="Thumbnail" class="img-fluid rounded shadow-sm" style="max-width: 300px; height: auto;" />
+                                }
+                                else
+                                {
+                                    <span class="text-muted">No Thumbnail</span>
+                                }
+                            </div>
+                        </div>
+                       
+
+                        <!-- Notice Type -->
+                        <div class="col-md-6">
+                            <div class="fw-bold">@Html.DisplayName("Notice Type")</div>
+                            <div>
+                                @if (Model.Ncid == "1")
+                                {
+                                    <span class="badge bg-primary">Notification</span>
+                                }
+                                else if (Model.Ncid == "2")
+                                {
+                                    <span class="badge bg-success">Event</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary">Latest News</span>
+                                }
+                            </div>
+                        </div>
+
+                        <!-- Added By -->
+                        <div class="col-md-6">
+                            <div class="fw-bold">@Html.DisplayName("Added By")</div>
+                            <div>
+                                @if (string.IsNullOrEmpty(Model.UserName))
+                                {
+                                    
+                                    <span class="text-muted">Not Available</span>
+                                }
+                                else
+                                {
+                                    @Html.DisplayFor(model => model.UserName)
+                                }
+                            </div>
+                        </div>
+
+                        @* add downhere *@
+
+                        <!-- Notice File -->
+                        <div class="col-md-6">
+                            <div class="fw-bold">@Html.DisplayName("Notice File")</div>
+                            <div>
+                                @if (!string.IsNullOrEmpty(Model.FilePath))
+                                {
+                                   if(Model.IsFile == "1")
+                                   {
+                                        <a href="@Model.FilePath" target="_blank" class="btn btn-outline-primary">
+                                            <i class="fas fa-download"></i> Download File
+                                        </a>
+                                   }
+                                   else
+                                   {
+                                        <span class="text-muted">No file available</span>
+                                   }
+                                }
+                                else
+                                {
+                                    <span class="text-muted">No file available</span>
+                                }
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="row mt-4">
+                <div class="col-12 text-center">
+                    <div class="btn-group d-flex justify-content-center" role="group">
+                        <!-- Edit Button with Font Awesome Icon -->
+                        @* <a href="@Url.Action("Edit", new { id = Model.Nid })" class="btn btn-warning me-3"> *@
+                        @*     <i class="fas fa-edit"></i> Edit *@
+                        @* </a> *@
+
+                        <!-- Delete Button with Font Awesome Icon -->
+                        @* <a href="@Url.Action("Delete", new { id = Model.Nid })" class="btn btn-danger me-3" onclick="return confirm('Are you sure you want to delete this?');"> *@
+                        @*     <i class="fas fa-trash"></i> Delete *@
+                        @* </a> *@
+
+                        <!-- Back Button with Font Awesome Icon -->
+                        <a href="@Url.Action("GetNoticeList")" class="btn btn-outline-secondary">
+                            <i class="fas fa-arrow-left"></i> Back
+                        </a>
+
+                        <!-- Button to trigger Description Modal -->
+                        <button type="button" class="btn btn-info ms-3" data-bs-toggle="modal" data-bs-target="#descriptionModal">
+                            <i class="fas fa-eye"></i> View Description
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+  
+</div>
+
+
+<!-- Modal for displaying Description -->
+<div class="modal fade" id="descriptionModal" tabindex="-1" aria-labelledby="descriptionModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" style="width: 85%; height: 550px; overflow-y: scroll;">
+            <div class="modal-header">
+                <h5 class="modal-title" id="descriptionModalLabel">Notice Description</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                   @Html.Raw(Model.Description);sss
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Custom CSS to ensure the modal is centered -->
+<style>
+    .modal-dialog {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    .modal-content {
+        width: 85%; /* Width of the modal */
+        height: 700px; /* Height of the modal */
+        overflow-y: auto; /* Scroll if content is too long */
+    }
+</style>
+
+
+
+<style>
+    .container-fluid {
+        background-color: #f8f9fa; /* Light background for better readability */
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .card {
+        border-radius: 10px;
+    }
+
+    .card-title {
+        font-size: 1.5rem;
+    }
+
+    .border {
+        border-color: #ddd !important;
+    }
+
+    .badge {
+        font-size: 0.9rem;
+        padding: 0.5em 0.75em;
+    }
+
+</style>

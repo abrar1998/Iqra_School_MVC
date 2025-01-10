@@ -1,0 +1,191 @@
+﻿@model IEnumerable<SchoolProj.Models.DTO.NoticeDTO>
+
+@{
+    ViewData["Title"] = "Get Notice List";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<div class="container-fluid mt-3 mb-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-primary fw-bold">Notice List</h2>
+        <a asp-action="AddNotice" asp-controller="Notice" class="btn btn-success btn-lg">
+            <i class="fas fa-plus-circle"></i> Create New Notice
+        </a>
+    </div>
+
+    <div class="table-responsive mb-5">
+        <table class="table table-hover table-bordered">
+            <thead class="table-primary text-white">
+                <tr>
+                    <th>S.No</th>
+                    <th>Date</th>
+                    <th>Title</th>
+                    @* <th>Description</th> *@
+                    <th>Category</th>
+                    <th>File Exists</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (!Model.Any())
+                {
+                    <tr>
+                        <td colspan="7" class="text-center text-danger">No notices found.</td>
+                    </tr>
+                }
+                else
+                {
+                    int sno = 1;
+                    foreach (var item in Model)
+                    {
+                        <tr id="notice_@item.Nid">
+                            <td>@sno</td>
+                            <td>
+                                @{
+                                    DateTime parsedDate;
+                                    if (DateTime.TryParse(item.NDate, out parsedDate))
+                                    {
+                                        @parsedDate.ToString("dd-MMM-yyyy")
+                                    }
+                                    else
+                                    {
+                                        @item.NDate
+                                        // Fallback if the string cannot be parsed
+                                    }
+                                }
+                            </td>
+
+
+                            <td>@item.Title</td>
+                            @* <td>@item.Description</td> *@
+                            <td>
+                                @{
+                                    string category = item.Ncid switch
+                                    {
+                                        "1" => "Notification",
+                                        "2" => "Event",
+                                        "3" => "Latest News",
+                                        _ => "Unknown"
+                                    };
+                                    @category
+                                }
+                            </td>
+                            <td>@(item.IsFile == "1" ? "Yes" : "No")</td>
+                            <td>
+                                <div class="d-flex justify-content-evenly align-items-center ">
+                                    <a asp-action="GetNotice" asp-route-id="@item.Nid" class="btn text-primary  me-2">
+                                        <i class="fas fa-info-circle"></i> 
+                                    </a>
+                                    <button onclick="deleteNotice('@item.Nid')" class="btn text-danger ">
+                                        <i class="fas fa-trash-alt"></i> 
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        sno++;
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+    /* Fullscreen styling */
+    .container-fluid {
+        min-height: 100vh;
+        background-color: #eef2f7;
+        padding: 20px;
+        border-radius: 8px;
+    }
+
+    /* Table styling */
+    .table {
+        margin-top: 20px;
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: #d6e9f9 !important;
+    }
+
+    /* Header styles */
+    .table-primary {
+        background-color: #0056b3 !important;
+    }
+
+        .table-primary th {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+        }
+
+    /* Text alignment */
+    th, td {
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    /* Button hover effects */
+    .btn {
+        transition: all 0.3s ease;
+    }
+
+        .btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+</style>
+
+
+<script>
+    function deleteNotice(noticeId) {
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this Notice!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+            if (willDelete) {
+                  $('#loader').show();
+                $.ajax({
+                    type: 'POST',
+                    url: "@Url.Action("DeleteNotice", "Notice")",
+                    data: { id: noticeId },
+                    success: function (response) {
+                          $('#loader').hide();
+                        if (response.isSuccess && response.status === 1) {
+                            // Remove the row from the table
+                            $('#notice_' + noticeId).remove();
+
+                            swal("Success!", response.message || "Notice has been deleted.", {
+                                icon: "success",
+                            });
+                        } else if (response.Status === 0) {
+                            // Display error message from the server
+                            swal("Error!", response.Message || "Failed to delete the notice.", {
+                                icon: "error",
+                            });
+                        } else {
+                            // Handle unexpected status
+                            swal("Technical Error!", response.error, {
+                                icon: "error",
+                            });
+                        }
+                    },
+                    error: function () {
+                          $('#loader').hide();
+                        swal("Error!", "An error occurred while processing your request.", {
+                            icon: "error",
+                        });
+                    },
+                });
+            } else {
+                  $('#loader').hide();
+                swal("Canceled", "Notice deletion has been canceled.", {
+                    icon: "info",
+                });
+            }
+        });
+    }
+</script>

@@ -1,0 +1,223 @@
+﻿@{
+    ViewData["Title"] = "AllDownload";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@* page header start *@
+<div class="container-fluid bg-breadcrumb"
+     style="height: 200px;
+            background: linear-gradient(rgba(19, 53, 123, 0.5), rgba(19, 53, 123, 0.5)),
+                        url('/Images/iqrabg.jpg') no-repeat center center;
+            background-size: cover;">
+    <div class="d-flex justify-content-center align-items-center h-100">
+        <h3 class="text-white mb-0" style="
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 3px;">
+            All Downloads
+        </h3>
+    </div>
+</div>
+
+@* page header end *@
+
+<!-- SweetAlert CDN -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<div class="container-fluid container-download mb-5 mt-3 d-flex justify-content-center align-items-center" style="min-height: 70vh;">
+    <div class="w-100" style="max-width: 800px;">
+        <!-- Title -->
+        <h3 class="text-center mb-4 text-primary">Download Details</h3>
+
+        <!-- Dropdown Section -->
+        <div class="row mb-3 d-flex justify-content-center align-items-center ">
+            <div class="col-12 col-md-5 mb-3 mb-md-0">
+                <label for="classDropdown"><strong>Class :</strong></label>
+                <select id="classDropdown" class="form-control" asp-items="ViewBag.ClassList">
+                    <option value="" selected disabled>-- Select Class --</option>
+                </select>
+            </div>
+
+            <div class="col-12 col-md-5 mb-3 mb-md-0">
+                <label for="typeDropdown"><strong>Type :</strong></label>
+                <select id="typeDropdown" class="form-control" asp-items="ViewBag.DownloadTypes">
+                    <option value="" selected disabled>-- Select Type --</option>
+                </select>
+            </div>
+            
+          <div class="d-flex justify-content-center align-items-center mt-2">
+                <div class="col-12 col-md-2">
+                    <button id="showBtn" class="btn btn-success btn-block w-100">Show</button>
+                </div>
+          </div>
+        </div>
+
+        <!-- Table Section (Initially Hidden) -->
+        <div id="downloadSection" class="mt-4 mb-5" style="display: none;">
+            <div class="table-responsive">
+                <table class="table table-hover table-striped text-center rounded shadow-sm">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Date</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Document Link</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <tr>
+                            <td colspan="4">No data available. Please select class and type.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        // Show button click
+        $('#showBtn').click(function () {
+            var selectedClass = $('#classDropdown').val();
+            var selectedExam = $('#typeDropdown').val();
+
+            // Input validation
+            if (!selectedClass || !selectedExam) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Incomplete Selection',
+                    text: 'Please select both Class and download type.',
+                    confirmButtonColor: '#3085d6'
+                });
+                return;
+            }
+
+            // Make Table visible
+            $('#downloadSection').show();
+            $('#tableBody').html('<tr><td colspan="4">Loading...</td></tr>'); // Loader state
+
+            // AJAX request to fetch data
+            $.ajax({
+                url: '/Home/GetDownloads', // Update controller endpoint
+                type: 'GET',
+                data: {
+                    classId: selectedClass,
+                    dtypeId: selectedExam
+                },
+                success: function (response) {
+                    $('#tableBody').empty();
+
+                    if (response && response.length > 0) {
+                        $.each(response, function (index, item) {
+                            $('#tableBody').append(`
+                                <tr>
+                                    <td>${item.dDate}</td>
+                                    <td>${item.title}</td>
+                                    <td>${item.description}</td>
+                                    <td>
+                                        <a href="${item.filePath}" target="_blank" class="btn btn-sm btn-success">Download</a>
+                                    </td>
+                                </tr>
+                            `);
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'info',
+                            title: 'No Data Found',
+                            text: 'There is no data available for the selected criteria.',
+                            confirmButtonColor: '#3085d6'
+                        });
+                        $('#tableBody').append('<tr><td colspan="4">No data found for the selected criteria.</td></tr>');
+                    }
+                },
+                error: function () {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Error fetching data. Please try again later.',
+                        confirmButtonColor: '#d33'
+                    });
+                    $('#tableBody').html('<tr><td colspan="4" class="text-danger">Error fetching data. Please try again later.</td></tr>');
+                }
+            });
+        });
+    });
+</script>
+
+<style>
+    /* Styling for dropdowns */
+    #classDropdown, #typeDropdown {
+        font-size: 1.1em;
+        border-radius: 8px;
+        padding: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Table Styling */
+    table {
+        font-size: 1em;
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 20px;
+    }
+
+        table th, table td {
+            padding: 12px 15px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        table th {
+            background-color: #343a40;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        table tr:hover {
+            background-color: #ddd;
+        }
+
+        table td a {
+            text-decoration: none;
+            color: #fff;
+            background-color: #28a745;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            transition: background-color 0.3s ease;
+        }
+
+            table td a:hover {
+                background-color: #218838;
+            }
+
+    /* Container Styling */
+    .container-download {
+        background-color: #f9f9f9;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Button Styling */
+    .btn-block {
+        border-radius: 8px;
+        padding: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Alert Styling for SweetAlert */
+    .swal2-popup {
+        font-family: 'Poppins', sans-serif;
+    }
+</style>

@@ -1,0 +1,429 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+/*new css added here*/
+
+
+/*** Section Title Start ***/
+.section-title {
+    position: relative;
+    display: inline-block;
+    text-transform: uppercase;
+    color: var(--bs-primary);
+}
+
+    .section-title::before {
+        content: "";
+        width: 50px;
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+        margin-right: -50px;
+        border: 1px solid var(--bs-primary) !important;
+    }
+
+    .section-title::after {
+        content: "";
+        width: 50px;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        margin-left: -50px;
+        border: 1px solid var(--bs-primary) !important;
+    }
+
+
+/*** Topbar Start ***/
+.fixed-top .container {
+    transition: 0.5s;
+}
+
+.topbar {
+    padding: 2px 10px 2px 20px;
+    background: var(--bs-primary) !important;
+}
+
+    .topbar a,
+    .topbar a i {
+        transition: 0.5s;
+    }
+
+        .topbar a:hover,
+        .topbar a i:hover {
+            color: var(--bs-secondary) !important;
+        }
+
+
+@media (max-width: 768px) {
+
+    .topbar {
+        display: none;
+    }
+
+    /* Admission and Job Links - display in a row on mobile */
+    .admission-job-links {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between; /* Center-align on small screens */
+    }
+
+
+
+    /* Address and Email - keep them in one row */
+    .address-email {
+        display: flex;
+        flex-direction: row;
+        justify-content: center; /* Center-align on small screens */
+        align-items: center;
+        margin-left: 0;
+        margin-right: 0;
+        /* Wrap if space is limited */
+        padding-right: 30px;
+        padding-left: 0px;
+    }
+
+
+
+    /* Phone Numbers - display in a row on mobile */
+    .text-md-end {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between; /* Center-align on small screens */
+    }
+
+        .text-md-end a {
+            margin-right: 15px;
+        }
+}
+
+/*** Topbar End ***/
+
+
+/*** Navbar ***/
+.navbar-light .navbar-nav .nav-link {
+    font-family: 'Roboto', sans-serif;
+    position: relative;
+    padding: 35px 15px;
+    color: var(--bs-white) !important;
+    font-size: 17px;
+    font-weight: 400;
+    outline: none;
+    transition: .5s;
+}
+
+.sticky-top.navbar-light .navbar-nav .nav-link {
+    padding: 20px 15px;
+    color: var(--bs-dark) !important;
+}
+
+.navbar-light .navbar-nav .nav-link:hover,
+.navbar-light .navbar-nav .nav-link.active {
+    color: var(--bs-white) !important;
+}
+
+.navbar-light .navbar-brand h2 {
+    color: var(--bs-white);
+}
+
+.sticky-top.navbar-light .navbar-brand h2 {
+    color: var(--bs-primary);
+}
+
+.navbar-light .navbar-brand img {
+    max-height: 60px;
+    transition: .5s;
+}
+
+.sticky-top.navbar-light .navbar-brand img {
+    max-height: 65px;
+}
+
+.navbar .dropdown-toggle::after {
+    border: none;
+    content: "\f107";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    vertical-align: middle;
+    margin-left: 8px;
+}
+
+@media (min-width: 1200px) {
+    .navbar .nav-item .dropdown-menu {
+        display: block;
+        visibility: hidden;
+        top: 100%;
+        transform: rotateX(-75deg);
+        transform-origin: 0% 0%;
+        border: 0;
+        border-radius: 10px;
+        transition: .5s;
+        opacity: 0;
+    }
+    /* .halflogo{
+        display: none;
+    } */
+}
+
+
+.dropdown .dropdown-menu a:hover {
+    background: var(--bs-primary);
+    color: var(--bs-white);
+}
+
+.navbar .nav-item:hover .dropdown-menu {
+    transform: rotateX(0deg);
+    visibility: visible;
+    background: var(--bs-light);
+    transition: .5s;
+    opacity: 1;
+}
+
+@media (max-width: 991.98px) {
+    .sticky-top.navbar-light {
+        position: relative;
+        background: var(--bs-white);
+    }
+
+    .navbar-light .navbar-brand h2 {
+        color: var(--bs-primary);
+        font-size: 1px;
+    }
+
+    .navbar.navbar-expand-lg .navbar-toggler {
+        padding: 10px 20px;
+        border: 1px solid var(--bs-primary);
+        color: var(--bs-primary);
+    }
+
+    .navbar-light .navbar-collapse {
+        margin-top: 15px;
+        border-top: 1px solid #DDDDDD;
+    }
+
+    .navbar-light .navbar-nav .nav-link,
+    .sticky-top.navbar-light .navbar-nav .nav-link {
+        padding: 10px 0;
+        color: var(--bs-dark) !important;
+    }
+
+        .navbar-light .navbar-nav .nav-link:hover,
+        .navbar-light .navbar-nav .nav-link.active {
+            color: var(--bs-primary) !important;
+        }
+
+    .navbar-light .navbar-brand img {
+        max-height: 45px;
+    }
+}
+
+@media (min-width: 992px) {
+    .navbar-light {
+        position: absolute;
+        width: 100%;
+        top: 0;
+        left: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, .1);
+        z-index: 999;
+    }
+
+    .sticky-top.navbar-light {
+        position: fixed;
+        background: var(--bs-light);
+    }
+
+    .navbar-light .navbar-nav .nav-link::before {
+        position: absolute;
+        content: "";
+        width: 100%;
+        height: 0;
+        bottom: -1px;
+        left: 0;
+        background: var(--bs-primary);
+        transition: .5s;
+        z-index: -1;
+    }
+
+    .navbar-light .navbar-nav .nav-link:hover::before,
+    .navbar-light .navbar-nav .nav-link.active::before {
+        height: calc(100% + 1px);
+        left: 1px;
+    }
+
+    .navbar-light .navbar-nav .nav-link.nav-contact::before {
+        display: none;
+    }
+
+    /* .halflogo{
+
+        display: none;
+       
+    } */
+
+
+}
+
+.HideschoolLabel {
+    display: none;
+}
+
+.ShowschoolLabel {
+    display: inline-block;
+}
+
+.hidelogo {
+    display: none
+}
+
+.showlogo {
+    display: block
+}
+
+
+/* Media query for tablets and below */
+@media (max-width: 768px) {
+    .logoimg {
+        /* width: 180px;  Increase width for tablets and small devices */
+        display: none;
+    }
+
+    .halflogo {
+        width: 90px;
+        height: 100px;
+    }
+
+    .fee-label {
+        margin-bottom: 10px;
+    }
+
+    .Label {
+        display: none;
+    }
+
+    .lab {
+        font-size: 12px;
+    }
+
+    .Label {
+        display: inline-block;
+        font-size: 12px;
+        font-weight: 700;
+    }
+}
+
+.Label {
+    display: inline-block;
+    font-size: 16px; /* Adjust the font size */
+    font-weight: 700;
+    color: #333; /* A dark gray color for contrast */
+    line-height: 1.5;
+    text-align: center;
+    margin-left: 10px; /* Space between logo and heading */
+}
+
+/* Responsive adjustments for smaller devices */
+@media (max-width: 768px) {
+    .Label {
+        font-size: 14px; /* Slightly smaller font size for small screens */
+        color: #000; /* Dark color for better readability */
+        margin-left: 5px; /* Reduced margin on small devices */
+    }
+}
+
+/* Even more compact for very small devices */
+@media (max-width: 480px) {
+    .Label {
+        font-size: 12px; /* Smaller font size for very small devices */
+        color: #444; /* Lighter shade for smaller devices */
+        margin-left: 3px; /* Minimal margin for tight spaces */
+        text-align: left; /* Align text to the left for mobile devices */
+    }
+}
+
+
+/* Media query for mobile devices */
+@media (max-width: 480px) {
+    .logoimg {
+        /* width: 200px;  Further increase width for mobile devices */
+        display: none;
+    }
+
+    .halflogo {
+        width: 90px;
+        height: 100px;
+    }
+
+    .fee-label {
+        margin-bottom: 10px;
+    }
+
+    .Label {
+        display: inline-block;
+    }
+}
+
+
+.ShowHalfLogo {
+    display: inline-block;
+}
+
+.HideHalfLogo {
+    display: none;
+}
+
+/* For iPad Pro 11-inch in portrait mode */
+@media (max-width: 834px) {
+    /* Styles for 11-inch iPad Pro in portrait */
+    .logoimg {
+        display: none
+    }
+}
+
+/* For iPad Pro 11-inch in landscape mode */
+@media (max-width: 1194px) {
+    /* Styles for 11-inch iPad Pro in landscape */
+    .logoimg {
+        display: none
+    }
+}
+
+/* For iPad Pro 12.9-inch in portrait mode */
+@media (max-width: 1024px) {
+    /* Styles for 12.9-inch iPad Pro in portrait */
+    .logoimg {
+        display: none
+    }
+}
+
+/* For iPad Pro 12.9-inch in landscape mode */
+@media (max-width: 1366px) {
+    /* Styles for 12.9-inch iPad Pro in landscape */
+    .navbar-light .navbar-brand h2 {
+        font-size: 15px;
+        font-weight: 700;
+    }
+}
+  
+
+  

@@ -1,0 +1,126 @@
+﻿@model IEnumerable<SchoolProj.Models.DTO.YoutubeDTO>
+
+@{
+    ViewData["Title"] = "Manage YouTube";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<style>
+    .modal-content {
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .bg-gradient-primary {
+        background: linear-gradient(135deg, #007bff, #0056b3);
+    }
+
+    .modal-header .btn-close {
+        opacity: 0.8;
+    }
+
+        .modal-header .btn-close:hover {
+            opacity: 1;
+        }
+
+    textarea::placeholder, input::placeholder {
+        font-style: italic;
+        color: #6c757d;
+    }
+
+</style>
+
+<h3 class="mb-2 mt-2 text-center fw-bold text-primary">Manage YouTube Videos</h3>
+
+<div class="d-flex justify-content-end mb-3">
+    <button class="btn btn-success shadow-sm" data-bs-toggle="modal" data-bs-target="#createYouTubeModal">
+        <i class="fas fa-plus-circle"></i> Create New
+    </button>
+</div>
+
+<table class="table table-hover table-bordered table-striped shadow-sm">
+    <thead class="bg-primary text-white">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Title)</th>
+            <th>@Html.DisplayNameFor(model => model.Description)</th>
+            <th class="text-center">Thumbnail</th>
+            <th>@Html.DisplayNameFor(model => model.Date)</th>
+            <th class="text-center">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr id="slide_@item.Yid">
+                <td class="align-middle"><strong>@Html.DisplayFor(modelItem => item.Title)</strong></td>
+                <td class="align-middle">
+                    <span class="text-truncate d-block" style="max-width: 250px;">@Html.DisplayFor(modelItem => item.Description)</span>
+                </td>
+                <td class="text-center align-middle">
+                    @if (!string.IsNullOrWhiteSpace(item.VideoId))
+                    {
+                        <iframe src="https://www.youtube.com/embed/@item.VideoId"
+                                title="@item.Title"
+                                class="rounded shadow-sm"
+                                style="width: 160px; height: 90px; border: none;">
+                        </iframe>
+                    }
+                    else
+                    {
+                        <span class="text-muted">Invalid YouTube URL</span>
+                    }
+                </td>
+                <td class="align-middle">@Html.DisplayFor(modelItem => item.Date)</td>
+                <td class="text-center align-middle">
+                    <button data-id="@item.Yid" class="btn text-danger delete-youtube-button">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Modal for Create New YouTube Video -->
+<div class="modal fade" id="createYouTubeModal" tabindex="-1" aria-labelledby="createYouTubeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content shadow-lg border-0 rounded-3">
+            <div class="modal-header bg-gradient-primary text-white">
+                <h5 class="modal-title fw-bold" id="createYouTubeModalLabel">
+                    <i class="fas fa-video-plus me-2"></i>Add New YouTube Video
+                </h5>
+                <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body bg-light">
+                <form method="post" id="ytForm" class="needs-validation" novalidate>
+                    <div class="mb-4">
+                        <label for="Title" class="form-label fw-semibold">Title <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control shadow-sm rounded" id="Title" name="Title" required placeholder="Enter Video Title">
+                    </div>
+                    <div class="mb-4">
+                        <label for="Description" class="form-label fw-semibold">Description <span class="text-danger">*</span></label>
+                        <textarea class="form-control shadow-sm rounded" id="Description" name="Description" rows="3" required placeholder="A short description of this video (1-2 lines)"></textarea>
+                    </div>
+                    <div class="mb-4">
+                        <label for="VideoLink" class="form-label fw-semibold">YouTube Video Link <span class="text-danger">*</span></label>
+                        <input type="url" class="form-control shadow-sm rounded" id="VideoLink" name="Url" required placeholder="Paste YouTube video link here">
+                    </div>
+                    <div class="modal-footer d-flex justify-content-between">
+                        <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-dismiss="modal">
+                            <i class="fas fa-times-circle me-1"></i>Cancel
+                        </button>
+                        <button type="button" id="SubmitYtBtn" class="btn btn-primary btn-sm shadow-sm">
+                            <i class="fas fa-save me-1"></i>Save
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@* all async operations performed in js file *@
+<script src="~/js/Gallery.js" defer asp-append-version="true"></script>

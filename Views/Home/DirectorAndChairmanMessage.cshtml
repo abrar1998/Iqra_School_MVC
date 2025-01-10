@@ -1,0 +1,125 @@
+﻿@model SchoolProj.Models.DTO.DirectorChairManViewModel
+
+@{
+    ViewData["Title"] = "DirectorAndChairmanMessage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var directorImage = Model.DirectorsMessage!.ThumbNail;
+    var chairManImage = Model.ChairMansMessage!.ThumbNail;
+
+}
+
+
+
+@* page header start *@
+
+<div class="container-fluid bg-breadcrumb"
+     style="height: 200px;
+            background: linear-gradient(rgba(19, 53, 123, 0.5), rgba(19, 53, 123, 0.5)),
+                        url('/Images/iqrabg.jpg') no-repeat center center;
+            background-size: cover;">
+    <div class="d-flex justify-content-center align-items-center h-100">
+        <h3 class="text-white mb-0" style="
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 3px;">
+            Director's and Chairman's Message
+        </h3>
+    </div>
+</div>
+
+
+@* page header end *@
+
+
+<div class="container my-5">
+    <h2 class="text-center mb-5">Messages from Chairman & Director</h2>
+
+    <!-- Chairman's Message Section -->
+    <section class="mb-5">
+        <div class="row align-items-center">
+            <div class="col-md-4 text-center">
+                <img src="@Model.ChairMansMessage.PagePic" class="img-fluid rounded-circle shadow-lg" alt="Chairman Photo" style="max-width: 200px; height: auto;">
+            </div>
+            <div class="col-md-8">
+                <div class="message-content">
+                    <h3 class="title">Chairman's Message</h3>
+                    <p class="message-text">
+                        @Html.Raw(Model.ChairMansMessage.PageData)
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Director's Message Section -->
+    <section>
+        <div class="row align-items-center">
+            <div class="col-md-4 text-center">
+                @if (Model.DirectorsMessage?.ThumbNail != null)
+                {
+                    <img src="@Model.DirectorsMessage.PagePic" class="img-fluid rounded-circle shadow-lg" alt="Director Photo" style="max-width: 200px; height: auto;">
+                }
+                else
+                {
+                    <p>Director image not available.</p>
+                }
+            </div>
+            <div class="col-md-8">
+                <div class="message-content">
+                    <h3 class="title">Director's Message</h3>
+                    <p class="message-text">
+                        @Html.Raw(Model.DirectorsMessage.PageData)
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<style>
+    /* General container styling */
+    .container {
+        max-width: 1200px;
+    }
+
+    /* Section Title */
+    .title {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #007bff; /* Theme blue */
+        margin-bottom: 15px;
+    }
+
+    /* Message Text */
+    .message-text {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #555;
+    }
+
+    /* Image Styling */
+    .img-fluid {
+        border-radius: 50%; /* Circular image */
+        border: 4px solid #007bff; /* Blue border */
+    }
+
+    /* Add shadow for depth */
+    .shadow-lg {
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Message Content Styling */
+    .message-content {
+        padding: 20px;
+        background-color: #f8f9fa; /* Light gray background */
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Space between sections */
+    section {
+        margin-bottom: 50px;
+    }
+</style>

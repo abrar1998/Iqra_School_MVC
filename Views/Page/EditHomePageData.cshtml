@@ -1,0 +1,163 @@
+﻿@model SchoolProj.Models.DTO.PageEditModel
+
+@{
+    ViewData["Title"] = "EditHomePageData";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-lg">
+        <div class="card-header bg-warning text-dark text-center">
+            <h3>Edit Home Page Director Message</h3>
+        </div>
+        <div class="card-body">
+            <form id="editPageForm" enctype="multipart/form-data" novalidate>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <input type="hidden" asp-for="Id" />
+
+                <div class="row mb-3">
+                    <!-- Page Name -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="PageName" class="form-label fw-bold">Page Name</label>
+                            <input asp-for="PageName" class="form-control" required readonly/>
+                            <span asp-validation-for="PageName" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <!-- Page Title -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="PageTitle" class="form-label fw-bold">Page Title</label>
+                            <input asp-for="PageTitle" class="form-control" maxlength="100" required readonly />
+                            <small class="form-text text-muted">
+                                <span id="charCount">100</span> characters remaining.
+                            </small>
+                            <span asp-validation-for="PageTitle" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <!-- Page URL -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="PageUrl" class="form-label fw-bold">Page URL</label>
+                            <input asp-for="PageUrl" class="form-control" required readonly />
+                            <span asp-validation-for="PageUrl" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <!-- Page Heading -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="PageHeading" class="form-label fw-bold">Enter Name <span>(eg, director, chairman etc)</span>)</label>
+                            <input asp-for="PageHeading" class="form-control" required />
+                            <span asp-validation-for="PageHeading" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <!-- Existing Picture -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label fw-bold">Existing Page Picture</label>
+                            <div class="d-flex align-items-center">
+                                <a href="@Url.Content(Model.ExistingPagePic)" target="_blank" class="btn text-primary me-2">
+                                    <i class="fas fa-eye"></i> View
+                                </a>
+                                <input type="hidden" asp-for="ExistingPagePic" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- New Picture -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="NewPagePic" class="form-label fw-bold">Upload New Picture</label>
+                            <input asp-for="NewPagePic" class="form-control" type="file" accept="image/*" />
+                            <img id="previewImg" class="mt-2 d-none img-thumbnail" style="max-width: 200px;" />
+                            <span asp-validation-for="NewPagePic" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <!-- Page Data -->
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-label fw-bold">Page Data</label>
+                            <textarea asp-for="PageData" id="PageData" class="form-control" maxlength="170"></textarea>
+                            <small class="form-text text-muted">
+                                <span id="pageDataCharCount">0</span> characters entered, max: 170.
+                            </small>
+                            <span asp-validation-for="PageData" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-4">
+                    <button type="button" id="editSubmitBtn" class="btn btn-success px-4">
+                        <i class="fas fa-save"></i> Save Changes
+                    </button>
+                    <a asp-action="GetWebPageList" asp-controller="Page" class="btn btn-secondary px-4">
+                        <i class="fas fa-arrow-left"></i> Back to List
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        const maxPageDataLength = 170;
+
+        $('#PageData').on('input', function () {
+            let charCount = $(this).val().length;
+            $('#pageDataCharCount').text(charCount);
+            if (charCount > maxPageDataLength) {
+                $('#pageDataCharCount').addClass('text-danger');
+            } else {
+                $('#pageDataCharCount').removeClass('text-danger');
+            }
+        });
+
+        $('#editSubmitBtn').click(function () {
+            var form = $('#editPageForm')[0];
+
+            if (form.checkValidity()) {
+                if ($('#PageData').val().length > maxPageDataLength) {
+                    swal("Warning!", `Page data should not exceed ${maxPageDataLength} characters.`, "warning");
+                    return;
+                }
+
+                $('#loader').show();
+                let formData = new FormData(form);
+                $.ajax({
+                    url: '@Url.Action("EditWebPage", "Page")',
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
+                        $('#loader').hide();
+                        if (response.isSuccess && response.status) {
+                            swal("Success!", response.message, "success");
+                        } else {
+                            swal("Error!", response.message, "error");
+                        }
+                    },
+                    error: function () {
+                        $('#loader').hide();
+                        swal("Error!", "Something went wrong while submitting the form.", "error");
+                    }
+                });
+            } else {
+                form.classList.add('was-validated');
+            }
+        });
+    });
+</script>

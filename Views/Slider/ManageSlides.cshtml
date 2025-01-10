@@ -1,0 +1,169 @@
+﻿@model IEnumerable<SchoolProj.Models.Domain.Slider>
+
+@{
+    ViewData["Title"] = "ManageSlides";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+   
+}
+
+<div class="container-fluid mt-3 mb-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-primary fw-bold">Manage Slides</h2>
+        <a asp-action="AddSlider" asp-controller="Slider" class="btn btn-success btn-lg">
+            <i class="fas fa-plus-circle"></i> Create New Slide
+        </a>
+    </div>
+
+    <div class="table-responsive mb-5">
+        <table class="table table-hover table-bordered">
+            <thead class="table-primary text-white">
+                <tr>
+                    <th>S.No</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Slide Image</th>
+                    <th>Actions</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                @if (!Model.Any())
+                {
+                    <tr>
+                        <td colspan="7" class="text-center text-danger">No slider found.</td>
+                    </tr>
+                }
+                else
+                {
+                    int sno = 1;
+                    foreach (var item in Model)
+                    {
+                        <tr id="slide_@item.SliderId">
+                           
+
+                            <td>@sno</td>
+                            <td>@item.SLiderTitle</td>
+                            <td>@item.SliderDesc</td> 
+                            
+                            <td>
+                                <img class="card-img-top" src="@item.SliderImage" alt="Student Photo" asp-append-version="true" style="height: 100px; width:100px; object-fit: cover;">
+                            </td>
+                           
+                            <td>
+                                <div class="d-flex justify-content-evenly align-items-center ">
+                                    <a asp-action="GetNotice" asp-route-id="@item.SliderId" class="btn text-primary  me-2">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <button onclick="deleteNotice('@item.SliderId')" class="btn text-danger ">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        sno++;
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+    /* Fullscreen styling */
+    .container-fluid {
+        min-height: 100vh;
+        background-color: #eef2f7;
+        padding: 20px;
+        border-radius: 8px;
+    }
+
+    /* Table styling */
+    .table {
+        margin-top: 20px;
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: #d6e9f9 !important;
+    }
+
+    /* Header styles */
+    .table-primary {
+        background-color: #0056b3 !important;
+    }
+
+        .table-primary th {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+        }
+
+    /* Text alignment */
+    th, td {
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    /* Button hover effects */
+    .btn {
+        transition: all 0.3s ease;
+    }
+
+        .btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+</style>
+
+
+<script>
+    function deleteNotice(SliderId) {
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this Slide!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+            if (willDelete) {
+                  $('#loader').show();
+                $.ajax({
+                    type: 'POST',
+                    url: "@Url.Action("DeleteSlide", "Slider")",
+                    data: { id: SliderId },
+                    success: function (response) {
+                          $('#loader').hide();
+                        if (response.isSuccess && response.status === 1) {
+                            // Remove the row from the table
+                            $('#slide_' + SliderId).remove();
+
+                            swal("Success!", "Slider has been deleted.", {
+                                icon: "success",
+                            });
+                        } else if (response.Status === 0) {
+                            // Display error message from the server
+                            swal("Error!","Failed to delete the slide.", {
+                                icon: "error",
+                            });
+                        } else {
+                            // Handle unexpected status
+                            swal("Technical Error!", response.error, {
+                                icon: "error",
+                            });
+                        }
+                    },
+                    error: function () {
+                          $('#loader').hide();
+                        swal("Error!", "An error occurred while processing your request.", {
+                            icon: "error",
+                        });
+                    },
+                });
+            } else {
+                  $('#loader').hide();
+                swal("Canceled", "Slide deletion has been canceled.", {
+                    icon: "info",
+                });
+            }
+        });
+    }
+</script>

@@ -1,0 +1,494 @@
+﻿@model SchoolProj.Models.DTO.PageEditModel
+
+@{
+    ViewData["Title"] = "Edit Page";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-lg">
+        <div class="card-header bg-warning text-dark text-center">
+            <h3>Edit Page</h3>
+        </div>
+        <div class="card-body">
+            <form id="editPageForm" enctype="multipart/form-data" novalidate>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <input type="hidden" asp-for="Id" />
+
+                <div class="row mb-3">
+                    <!-- Page Name -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="PageName" class="form-label fw-bold">Page Name</label>
+                            <input asp-for="PageName" class="form-control" required  />
+                            <span asp-validation-for="PageName" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <!-- Page Title -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="PageTitle" class="form-label fw-bold">Page Title</label>
+                            <input asp-for="PageTitle" class="form-control" maxlength="100" required />
+                            <small class="form-text text-muted">
+                                <span id="charCount">100</span> characters remaining.
+                            </small>
+                            <span asp-validation-for="PageTitle" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <!-- Page URL -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="PageUrl" class="form-label fw-bold">Page URL</label>
+                            <input asp-for="PageUrl" class="form-control" required  />
+                            <span asp-validation-for="PageUrl" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <!-- Page Heading -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="PageHeading" class="form-label fw-bold">Page Heading</label>
+                            <input asp-for="PageHeading" class="form-control" required />
+                            <span asp-validation-for="PageHeading" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <!-- Existing Picture -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label fw-bold">Existing Page Picture</label>
+                            <div class="d-flex align-items-center">
+                                <a href="@Url.Content(Model.ExistingPagePic)"  target="_blank" class="btn text-primary me-2">
+                                    <i class="fas fa-eye"></i> View
+                                </a>
+                                <input type="hidden" asp-for="ExistingPagePic" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- New Picture -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="NewPagePic" class="form-label fw-bold">Upload New Picture</label>
+                            <input asp-for="NewPagePic" class="form-control" type="file" accept="image/*" />
+                            <img id="previewImg" class="mt-2 d-none img-thumbnail" style="max-width: 200px;" />
+                            <span asp-validation-for="NewPagePic" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <!-- Page Data -->
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-label fw-bold">Page Data</label>
+                            <!-- Rich Text Editor Container -->
+                            <div id="quillEditor" style="height: 400px;">@Model.PageData</div>
+                            <textarea asp-for="PageData" id="PageData" class="form-control d-none"></textarea>
+                            <span asp-validation-for="PageData" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-4">
+                    <button type="button" id="editSubmitBtn" class="btn btn-success px-4">
+                        <i class="fas fa-save"></i> Save Changes
+                    </button>
+                    <a asp-action="GetWebPageList" asp-controller="Page" class="btn btn-secondary px-4">
+                        <i class="fas fa-arrow-left"></i> Back to List
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Loading Spinner : i have added spinner in admin layout file-->
+
+
+<!-- Quill JS and CSS -->
+<link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
+<script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script>
+<!-- Include SweetAlert -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        // Initialize Quill Editor
+        var quill = new Quill('#quillEditor', {
+            theme: 'snow',
+            modules: {
+                 toolbar: [
+                    [{ 'header': [1, 2, 3, false] }], // Headers
+                    ['bold', 'italic', 'underline', 'strike'], // Text styling
+                    [{ 'color': [] }, { 'background': [] }], // Text color and background color
+                    [{ 'align': [] }], // Text alignment
+                    ['link', 'image', 'video'], // Media
+                    [{ 'list': 'ordered' }, { 'list': 'bullet' }], // Lists
+                    [{ 'script': 'sub' }, { 'script': 'super' }], // Subscript/Superscript
+                    [{ 'indent': '-1' }, { 'indent': '+1' }], // Indentation
+                    [{ 'direction': 'rtl' }], // Right-to-left
+                    ['clean'] // Remove formatting button
+                ]
+            }
+        });
+
+        // Image insertion via prompt for URL
+        var toolbar = quill.getModule('toolbar');
+        toolbar.addHandler('image', function() {
+            var imageUrl = prompt('Enter image URL');
+            if (imageUrl) {
+                var range = quill.getSelection();
+                quill.insertEmbed(range.index, 'image', imageUrl);
+            }
+        });
+
+        // Handle image resizing
+        quill.root.addEventListener('click', function(event) {
+            if (event.target.tagName.toLowerCase() === 'img') {
+                // Example: Resize image to 300px width
+                event.target.style.width = '300px'; // You can add more resizing logic here
+            }
+        });
+
+        // Image Deletion
+        quill.root.addEventListener('click', function(event) {
+            if (event.target.tagName.toLowerCase() === 'img') {
+                var deleteConfirmation = confirm("Do you want to delete this image?");
+                if (deleteConfirmation) {
+                    var range = quill.getSelection();
+                    quill.deleteText(range.index, 1);  // Delete the image
+                }
+            }
+        });
+
+        // Populate Quill with existing data
+        quill.root.innerHTML = $('#PageData').val();
+
+        // Character Counter for Page Title
+        $('#PageTitle').on('input', function () {
+            var remaining = 100 - $(this).val().length;
+            $('#charCount').text(remaining);
+        });
+
+        // Preview Image
+        $('[asp-for="NewPagePic"]').change(function () {
+            const [file] = this.files;
+            if (file) {
+                $('#previewImg').removeClass('d-none').attr('src', URL.createObjectURL(file));
+            }
+        });
+
+        // Handle form submission
+        $('#editSubmitBtn').click(function () {
+            var form = $('#editPageForm')[0];
+
+            if (form.checkValidity()) {
+                // Show spinner
+                $('#loader').show();
+                // Set PageData value from Quill before submission
+                $('#PageData').val(quill.root.innerHTML);
+
+                let formData = new FormData(form);
+                $.ajax({
+                    url: '@Url.Action("EditWebPage", "Page")',
+                    type: 'POST',
+                    data: formData,
+                    processData: false, // Required for FormData
+                    contentType: false, // Required for FormData
+                    success: function (response) {
+                         $("#loader").hide();
+                        if (response.isSuccess && response.status) {
+                            swal("Success!", response.message, "success", { button: "Ok!" });
+                        } else {
+                            swal("Error!", response.message, "error", { button: "Ok!" });
+                        }
+                    },
+                    error: function () {
+                          $('#loader').hide();
+                        $('#loadingSpinner').addClass('d-none');
+                        swal("Error!", "Something went wrong while submitting the form.", "error", { button: "Ok!" });
+                    }
+                });
+            } else {
+                  $('#loader').hide();
+                form.classList.add('was-validated');
+            }
+        });
+    });
+</script>
+
+@* 
+<script>
+    $(document).ready(function () {
+        // Initialize Quill Editor
+        var quill = new Quill('#quillEditor', {
+            theme: 'snow',
+            modules: {
+                 toolbar: [
+                    [{ 'header': [1, 2, 3, false] }], // Headers
+                    ['bold', 'italic', 'underline', 'strike'], // Text styling
+                    [{ 'color': [] }, { 'background': [] }], // Text color and background color
+                    [{ 'align': [] }], // Text alignment
+                    ['link', 'image', 'video'], // Media
+                    [{ 'list': 'ordered' }, { 'list': 'bullet' }], // Lists
+                    [{ 'script': 'sub' }, { 'script': 'super' }], // Subscript/Superscript
+                    [{ 'indent': '-1' }, { 'indent': '+1' }], // Indentation
+                    [{ 'direction': 'rtl' }], // Right-to-left
+                    ['clean'] // Remove formatting button
+                ]
+            }
+        });
+
+
+
+        // Populate Quill with existing data
+        quill.root.innerHTML = $('#PageData').val();
+
+        // Character Counter for Page Title
+        $('#PageTitle').on('input', function () {
+            var remaining = 100 - $(this).val().length;
+            $('#charCount').text(remaining);
+        });
+
+        // Preview Image
+        $('[asp-for="NewPagePic"]').change(function () {
+            const [file] = this.files;
+            if (file) {
+                $('#previewImg').removeClass('d-none').attr('src', URL.createObjectURL(file));
+            }
+        });
+
+        // Handle form submission
+        $('#editSubmitBtn').click(function () {
+            var form = $('#editPageForm')[0];
+
+            if (form.checkValidity()) {
+                // Show spinner
+                $('#loadingSpinner').removeClass('d-none');
+
+                // Set PageData value from Quill before submission
+                $('#PageData').val(quill.root.innerHTML);
+
+                let formData = new FormData(form);
+                $.ajax({
+                    url: '@Url.Action("EditWebPage", "Page")',
+                    type: 'POST',
+                    data: formData,
+                    processData: false, // Required for FormData
+                    contentType: false, // Required for FormData
+                    success: function (response) {
+                        $('#loadingSpinner').addClass('d-none');
+                        if (response.isSuccess && response.status) {
+                            swal("Success!", response.message, "success", { button: "Ok!" });
+                        } else {
+                            swal("Error!", response.message, "error", { button: "Ok!" });
+                        }
+                    },
+                    error: function () {
+                        $('#loadingSpinner').addClass('d-none');
+                        swal("Error!", "Something went wrong while submitting the form.", "error", { button: "Ok!" });
+                    }
+                });
+            } else {
+                form.classList.add('was-validated');
+            }
+        });
+    });
+</script>
+
+
+
+
+
+ *@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@* @model SchoolProj.Models.DTO.PageEditModel
+
+@{
+    ViewData["Title"] = "Edit Page";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-lg">
+        <div class="card-header bg-warning text-dark text-center">
+            <h3>Edit Page</h3>
+        </div>
+        <div class="card-body">
+            <form id="editPageForm" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <input type="hidden" asp-for="Id" />
+
+                <div class="row mb-3">
+                    <!-- Page Name -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="PageName" class="form-label fw-bold">Page Name</label>
+                            <input asp-for="PageName" class="form-control" />
+                            <span asp-validation-for="PageName" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <!-- Page Title -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="PageTitle" class="form-label fw-bold">Page Title</label>
+                            <input asp-for="PageTitle" class="form-control" />
+                            <span asp-validation-for="PageTitle" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <!-- Page URL -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="PageUrl" class="form-label fw-bold">Page URL</label>
+                            <input asp-for="PageUrl" class="form-control" />
+                            <span asp-validation-for="PageUrl" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <!-- Page Heading -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="PageHeading" class="form-label fw-bold">Page Heading</label>
+                            <input asp-for="PageHeading" class="form-control" />
+                            <span asp-validation-for="PageHeading" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <!-- Existing Picture -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label fw-bold">Existing Page Picture</label>
+                            <div class="d-flex align-items-center">
+                                <a href="@Url.Content(Model.ExistingPagePic)" target="_blank" class="me-2">
+                                    <i class="fas fa-eye"></i> View
+                                </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- New Picture -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="NewPagePic" class="form-label fw-bold">Upload New Picture</label>
+                            <input asp-for="NewPagePic" class="form-control" type="file" />
+                            <span asp-validation-for="NewPagePic" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <!-- Page Data -->
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-label fw-bold">Page Data</label>
+                            <!-- Rich Text Editor Container -->
+                            <div id="quillEditor" style="height: 400px;">@Model.PageData</div>
+                            <textarea asp-for="PageData" id="PageData" class="form-control d-none"></textarea>
+                            <span asp-validation-for="PageData" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+                <div class="text-center mt-4">
+                    <button type="button" id="editSubmitBtn" class="btn btn-success px-4">
+                        <i class="fas fa-save"></i> Save Changes
+                    </button>
+                    <a asp-action="Index" class="btn btn-secondary px-4">
+                        <i class="fas fa-arrow-left"></i> Back to List
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+    <!-- Quill JS and CSS -->
+    <link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
+    <script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script>
+    <!-- Include SweetAlert -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            // Initialize Quill Editor
+            var quill = new Quill('#quillEditor', {
+                theme: 'snow'
+            });
+
+            // Populate Quill with existing data
+            quill.root.innerHTML = $('#PageData').val();
+
+            // Handle form submission
+            $('#editSubmitBtn').click(function () {
+                var form = $('#editPageForm')[0];
+
+                if (form.checkValidity()) {
+                    // Set PageData value from Quill before submission
+                    $('#PageData').val(quill.root.innerHTML);
+
+                    let formData = new FormData(form);
+                    $.ajax({
+                        url: '@Url.Action("EditPage", "Page")',
+                        type: 'POST',
+                        data: formData,
+                        processData: false, // Required for FormData
+                        contentType: false, // Required for FormData
+                        success: function (response) {
+                            if (response.isSuccess && response.status) {
+                                swal("Success!", response.message, "success", {
+                                    button: "Ok!"
+                                });
+                            } else {
+                                swal("Error!", response.message, "error", {
+                                    button: "Ok!"
+                                });
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            swal("Error!", "Something went wrong while submitting the form.", "error", {
+                                button: "Ok!"
+                            });
+                        }
+                    });
+                } else {
+                    form.classList.add('was-validated');
+                }
+            });
+        });
+    </script>
+
+ *@

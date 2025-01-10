@@ -1,0 +1,247 @@
+﻿@{
+    //get current user name
+    var _userName = Context.Session.GetString("UserName");
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IEI Admin Panel</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+          integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+    <!-- jQuery UI CSS -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="~/css/AdminLayout.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Spinner.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Spinner.css" />
+
+
+    <!-- SweetAlert -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
+            integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- jQuery UI JavaScript -->
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+</head>
+
+
+<body>
+    <div class="admin-layout">
+        <div class="loading" id="loader" style="display:none">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <!-- Spinner Start -->
+        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+        <!-- Header -->
+        <header class="header d-flex justify-content-between align-items-center p-2">
+            <div class="header-left d-flex align-items-center">
+                <!-- Toggle Button -->
+                <button class="btn btn-light btn-sm">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <a href="/home" class="btn me-3 p-3 text-white text-center">
+                <h5 class="text-uppercase fw-bold mb-0">Iqra Educational Institute</h5>
+            </a>
+            <div class="header-right d-flex align-items-center">
+                <!-- Profile Dropdown -->
+                <div class="dropdown">
+                    <img src="https://cdn0.iconfinder.com/data/icons/fillicons-information-technology/1550/programmer_software_developer-1024.png"
+                         alt="Profile"
+                         class="profile-img rounded-circle"
+                         id="dropdownMenuButton"
+                         data-bs-toggle="dropdown"
+                         style="width: 40px; height: 40px; cursor: pointer;" />
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i>Profile</a></li>
+                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#passwordChangeModal"><i class="fas fa-cogs me-2"></i>Change Password</a></li>
+                        <li><a class="dropdown-item" href="/Accounts/Logout"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Layout -->
+        <div class="main-layout">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <nav>
+                    <ul class="nav flex-column justify-content-center">
+                        <li class="nav-item mt-2">
+                            <a class="nav-link" asp-action="AdminDashBoard" asp-controller="Admin">
+                                <i class="fas fa-tachometer-alt"></i> Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="noticesDropdown" role="button" data-bs-toggle="dropdown" style="margin-top:0;">
+                                <i class="fas fa-bell"></i> Notices
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="noticesDropdown">
+                                @* <li style="margin:0; padding:0;"><a style="padding:5px;" class="dropdown-item" asp-action="AddNotice" asp-controller="Notice">Add Notice</a></li> *@
+                                @* <li style="margin:0; padding:0;"><a style="padding:5px;" class="dropdown-item" asp-action="GetNoticeList" asp-controller="Notice">Manage Notices</a></li> *@
+                                <li style="margin:0; padding:0;">
+                                    <a style="padding:5px;" class="dropdown-item" asp-action="AddNotice" asp-controller="Notice">
+                                        <i class="fas fa-plus-circle me-2"></i> <!-- Icon for Add Notice -->
+                                        Add Notice
+                                    </a>
+                                </li>
+                                <li style="margin:0; padding:0;">
+                                    <a style="padding:5px;" class="dropdown-item" asp-action="GetNoticeList" asp-controller="Notice">
+                                        <i class="fas fa-tasks me-2"></i> <!-- Icon for Manage Notices -->
+                                        Manage Notices
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-bs-toggle="dropdown">
+                                <i class="fas fa-file-alt"></i> Pages
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="pagesDropdown">
+                                @* <li><a class="dropdown-item" asp-controller="Page" asp-action="AddPage" >Add Page</a></li> *@
+                                <li style="margin:0; padding:0;"><a style="padding:5px;" class="dropdown-item" asp-controller="Page" asp-action="GetWebPageList">
+                                        <i class="fas fa-tasks me-2"></i>
+                                    Manage Pages</a></li>
+                                @* <li><a class="dropdown-item" href="#">Page Settings</a></li> *@
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="sliderDropdown" role="button" data-bs-toggle="dropdown">
+                                <i class="fas fa-images"></i> Slider
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="sliderDropdown">
+                                <li style="margin:0; padding:0;"><a style="padding:5px;" class="dropdown-item" asp-action="AddSlider" asp-controller="Slider">   <i class="fas fa-plus-circle me-2"></i>  Add New Slide</a></li>
+                                <li style="margin:0; padding:0;"><a style="padding:5px;" class="dropdown-item" asp-action="ManageSlides" asp-controller="Slider"> <i class="fas fa-tasks me-2"></i> Manage Slides</a></li>
+                                @* <li><a class="dropdown-item" href="#">Slider Settings</a></li> *@
+                            </ul>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="downloadsDropdown" role="button" data-bs-toggle="dropdown">
+                                <i class="fas fa-download"></i> Downloads
+                            </a>
+                            <ul class="dropdown-menu p-0" aria-labelledby="downloadsDropdown">
+                                <li style="margin:0; padding:0;"><a style="padding:5px;" class="dropdown-item px-3 py-2" asp-action="AddDownload" asp-controller="Downloads">   <i class="fas fa-plus-circle me-2"></i>  Add Downloads</a></li>
+                                <li style="margin:0; padding:0;"><a style="padding:5px;" class="dropdown-item px-3 py-2" asp-action="DownLoadList" asp-controller="Downloads"> <i class="fas fa-tasks me-2"></i> Manage Downloads</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="galleryDropdown" role="button" data-bs-toggle="dropdown">
+                                <i class="fas fa-images"></i> Gallery
+                            </a>
+                            <ul class="dropdown-menu p-0" aria-labelledby="galleryDropdown">
+                                <li style="margin:0; padding:0;"><a style="padding:5px;" class="dropdown-item px-3 py-2" asp-action="ManageImages" asp-controller="Gallery">   <i class="fas fa-tasks me-2"></i> Manage Images </a></li>
+                                <li style="margin:0; padding:0;"><a style="padding:5px;" class="dropdown-item px-3 py-2" asp-action="ManageCategory" asp-controller="Gallery"> <i class="fas fa-tasks me-2"></i> Manage Photo Category</a></li>
+                                <li style="margin:0; padding:0;"><a style="padding:5px;" class="dropdown-item px-3 py-2" asp-action="ManageYoutube" asp-controller="Gallery"> <i class="fas fa-tasks me-2"></i> Manage Youtube</a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </nav>
+            </aside>
+
+            <!-- Content Area -->
+            <main class="content flex-grow-1">
+                <!-- Dynamic Content -->
+                @RenderBody()
+            </main>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Password Change Modal -->
+
+    <div class="modal fade" id="passwordChangeModal" tabindex="-1" aria-labelledby="passwordChangeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="border-radius: 10px; overflow: hidden; box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);">
+                <div class="modal-header" style="background-color: #007bff; color: white; text-align: center;">
+                    <h5 class="modal-title w-100" id="passwordChangeModalLabel" style="font-weight: bold; font-size: 1.5rem; color:white">Change Password</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="color: white;"></button>
+                </div>
+                <div class="modal-body" style="padding: 2rem;">
+                    <form id="passwordChangeForm">
+                        <div class="mb-4">
+                            <label for="username" class="form-label" style="font-weight: 600;">Username</label>
+                            <input type="text" class="form-control" id="username" name="username" readonly value=@_userName required style="border-radius: 5px;">
+                        </div>
+                        <div class="mb-4">
+                            <label for="oldPassword" class="form-label" style="font-weight: 600;">Old Password</label>
+                            <input type="password" class="form-control" id="oldPassword" name="oldPassword" required style="border-radius: 5px;">
+                        </div>
+                        <div class="mb-4">
+                            <label for="newPassword" class="form-label" style="font-weight: 600;">New Password</label>
+                            <input type="password" class="form-control" id="newPassword" name="newPassword" required style="border-radius: 5px;">
+                        </div>
+                        <div class="text-center d-flex justify-content-center">
+                            <button type="submit" class="btn btn-primary" 
+                            style="font-weight: 600; padding: 10px 20px; font-size: 1rem;
+border-radius: 5px; display: flex; align-items: center; justify-content: center;
+background: linear-gradient(45deg, #007bff, #00d2ff); border: none; transition: all 0.3s ease;">
+                                <i class="fas fa-key" style="margin-right: 8px;"></i>
+                                Change Password
+                            </button>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Template Javascript -->
+    <!-- Add Bootstrap JS Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/PasswordChange.js" asp-append-version="true"></script>
+    
+    
+
+    <script>
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeSpinner();
+            const toggleSidebarButton = document.querySelector('.btn-light');
+            const sidebar = document.querySelector('.sidebar');
+
+            toggleSidebarButton.addEventListener('click', () => {
+                sidebar.classList.toggle('closed');
+            });
+        });
+
+        function initializeSpinner() {
+            setTimeout(function () {
+                const spinnerElement = document.getElementById('spinner');
+                if (spinnerElement) {
+                    spinnerElement.classList.remove('show');
+                }
+            }, 1000); // Adjust the timeout duration as needed (e.g., 1000ms = 1s)
+        }
+    </script>
+</body>
+</html>

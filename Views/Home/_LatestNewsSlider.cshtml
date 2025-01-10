@@ -1,0 +1,204 @@
+﻿
+
+<style>
+    .about-section-bg {
+        min-height: 300px; /* Adjust as needed */
+    }
+
+    .view-all-container {
+        margin-top: 20px; /* Add spacing above the button */
+    }
+
+    .view-all-button {
+        /* font-size: 1.2rem; /* Slightly larger font size */ */
+        /* font-weight: bold; /* Make the text bold */ */ padding: 10px 20px; /* Add padding for a prominent button */
+        background-color: #4070F4; /* Match the primary theme color */
+        color: #FFF; /* White text for contrast */
+        border: none; /* Remove default border */
+        border-radius: 6px; /* Rounded corners */
+        cursor: pointer; /* Pointer cursor for interactivity */
+        transition: all 0.3s ease; /* Smooth hover transition */
+    }
+
+        .view-all-button:hover {
+            background-color: #265DF2; /* Darker shade on hover */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow on hover */
+        }
+
+    .name {
+        height: 60px; /* Fixed height for the title */
+        overflow-y: auto; /* Enable vertical scrolling if content exceeds height */
+        font-size: 1rem; /* Adjust font size */
+        line-height: 1.2; /* Adjust line height */
+        text-align: center; /* Center the text horizontally */
+        padding: 5px; /* Add padding for better spacing */
+    }
+
+    .slide-container {
+        max-width: 1120px;
+        width: 100%;
+        padding: 40px 0;
+    }
+
+    /* .slide-content { */
+    /*     margin: 0 40px; */
+    /*     overflow: hidden; */
+    /*     /* border-radius: 25px; */ 
+    /* } */
+
+    /* .card { */
+
+    /*     /* border-radius: 25px; */ 
+    /*     /* background-color: transparent; /* Remove the background color */ 
+    /* } */
+    .slide-content {
+        margin: 0 40px;
+        overflow: hidden;
+        /* border-radius: 20px; /* Rounded corners for a smooth look */ */
+        /* border: 2px solid #007bff; /* Stylish blue border */ */
+        background: linear-gradient(to bottom right, #f8f9fa, #e9ecef); /* Light gradient background for subtle depth */
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Shadow for a raised effect */
+        padding: 15px; /* Add spacing inside the content */
+    }
+
+    .card {
+        border-radius: 15px; /* Smooth rounded corners for cards */
+        background: #ffffff; /* White background for card contrast */
+        border: 3px solid #17a2b8; /* Attractive teal border */
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+    }
+
+        .card:hover {
+            transform: translateY(-5px); /* Slight lift on hover */
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2); /* Increased shadow on hover */
+            border-color: #0056b3; /* Darker blue border on hover for emphasis */
+        }
+
+
+    .image-content,
+    .card-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 14px;
+    }
+
+    .image-content {
+        position: relative;
+        row-gap: 5px;
+        padding: 0; /* Remove extra padding for clean fit */
+    }
+
+    .card-image {
+        position: relative;
+        height: 200px; /* Fixed height for every image */
+        width: 100%; /* Full width for the image container */
+        overflow: hidden; /* Hide excess image content */
+    }
+
+        .card-image .card-img {
+            height: 100%; /* Fill the container height */
+            width: 100%; /* Fill the container width */
+            object-fit: cover; /* Ensure proportional scaling */
+            border-radius: 0; /* Remove the circular shape */
+            border: none; /* Remove the border */
+        }
+
+    .description {
+        font-size: 14px;
+        color: #707070;
+        text-align: center;
+    }
+
+    .button {
+        border: none;
+        font-size: 16px;
+        color: #FFF;
+        padding: 8px 16px;
+        background-color: #4070F4;
+        border-radius: 6px;
+        margin: 14px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+        .button:hover {
+            background: #265DF2;
+        }
+
+    .swiper-navBtn {
+        color: #6E93f7;
+        transition: color 0.3s ease;
+    }
+
+        .swiper-navBtn:hover {
+            color: #4070F4;
+        }
+
+        .swiper-navBtn::before,
+        .swiper-navBtn::after {
+            font-size: 35px;
+        }
+
+    .swiper-button-next {
+        right: 0;
+    }
+
+    .swiper-button-prev {
+        left: 0;
+    }
+
+    .swiper-pagination-bullet {
+        background-color: #6E93f7;
+        opacity: 1;
+    }
+
+    .swiper-pagination-bullet-active {
+        background-color: #4070F4;
+    }
+
+    .latest-news-section {
+        text-align: center; /* Center the heading */
+        margin-bottom: 20px; /* Add spacing between the heading and the slider */
+    }
+
+    .latest-news-heading {
+        font-size: 2rem; /* Make the heading prominent */
+        font-weight: bold; /* Emphasize the text */
+        color: #333; /* Neutral color for text */
+        margin-bottom: 20px; /* Add spacing below the heading */
+        text-transform: uppercase; /* Optional: Make the text uppercase */
+        border-bottom: 2px solid white; /* Optional: Add a decorative border */
+        display: inline-block; /* Center the border with the text */
+        padding-bottom: 5px; /* Space between text and border */
+    }
+
+</style>
+
+<section class="about-section-bg overflow-hidden py-2 py-lg-3"
+         style="background: url('/Images/section-bg-dark.png') no-repeat;
+                background-size: cover;
+                background-position: center;">
+
+    <div class="latest-news-section container-fluid">
+        <h2 class="latest-news-heading text-white">Latest News</h2>
+        <div class="slide-container container-fluid swiper">
+            <div class="slide-content">
+                <div class="card-wrapper swiper-wrapper"  id="swiper-cards-container">
+                    <!-- Cards will be dynamically inserted here -->
+                </div>
+            </div>
+
+            <div class="swiper-button-next swiper-navBtn"></div>
+            <div class="swiper-button-prev swiper-navBtn"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+        <div class="view-all-container text-center mt-3 mb-4">
+            <a asp-action="Notices" asp-controller="Public" class="view-all-button btn btn-primary">View All</a>
+        </div>
+    </div>
+</section>
+
+
+

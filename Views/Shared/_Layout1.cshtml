@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Crescent Public School</title>
+    <link rel="icon" type="image/svg" href="~/Images/logocrescent2.png" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600&family=Roboto&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!-- Additional Libraries -->
+    <link href="~/template/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="~/template/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+    <!-- Custom Stylesheets -->
+    <link href="~/template/css/style.css" rel="stylesheet" asp-append-version="true">
+    <link href="~/css/site.css" rel="stylesheet" asp-append-version="true">
+    <link href="~/template/css/bell.css" rel="stylesheet" asp-append-version="true">
+</head>
+
+<body>
+    <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Header -->
+    <partial name="_LayoutHeader.cshtml" />
+
+    <!-- Main Content -->
+    <main class="flex-grow-1">
+        @RenderBody()
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section about">
+                <h2 class="text-white">About Us</h2>
+                <p>Our school focuses on creating a bright future for students by encouraging academic excellence and extracurricular activities.</p>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/cpsian/about/"><i class="fab fa-facebook-f"></i></a>
+                    @* <a href="#"><i class="fab fa-twitter"></i></a> *@
+                    <a href="https://www.instagram.com/crescent_public_school_cps/"><i class="fab fa-instagram"></i></a>
+                    @* <a href="#"><i class="fab fa-youtube"></i></a> *@
+                </div>
+            </div>
+            <div class="footer-section contact">
+                <h2 class="text-white">Contact Us</h2>
+                <p><i class="fas fa-phone-alt"></i> +91-9697132584 | +91-9419022593</p>
+                <p><i class="fas fa-envelope"></i> info@crescentps.in</p>
+                <p><i class="fas fa-map-marker-alt"></i> Habak, Naseem Bagh, Srinagar, Union Territory of Jammu and Kashmir, India</p>
+            </div>
+            <div class="footer-section map">
+                <h2 class="text-white">Our Location</h2>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13209.306790623252!2d74.834938!3d34.137983!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38e184530d872771%3A0x79636eabf23041a7!2sCrescent%20Public%20School!5e0!3m2!1sen!2sin!4v1732874104469!5m2!1sen!2sin"
+                        width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Crescent Public School | All rights reserved. | Powered By National IT Solutions</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary btn-primary-outline-0 btn-md-square back-to-top"><i class="fa fa-arrow-up"></i></a>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+    <!-- Custom JavaScript -->
+    <script src="~/template/js/main.js"></script>
+    <script src="~/js/Notification.js" asp-append-version="true"></script>
+
+    <!-- Custom JavaScript -->
+    <script src="~/template/js/main.js"></script>
+    <script src="~/js/Notification.js" asp-append-version="true"></script>
+   
+</body>
+
+</html>

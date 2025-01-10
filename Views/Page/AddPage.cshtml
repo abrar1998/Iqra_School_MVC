@@ -1,0 +1,150 @@
+﻿@model SchoolProj.Models.DTO.PageViewModel
+
+@{
+    ViewData["Title"] = "Add Page";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white text-center">
+            <h3>Add Page</h3>
+        </div>
+        <div class="card-body">
+            <form id="noticeForm" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="row mb-3">
+                    <!-- Page Name -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="PageName" class="form-label fw-bold">Page Name</label>
+                            <input asp-for="PageName" class="form-control" />
+                            <span asp-validation-for="PageName" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <!-- Page Title -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="PageTitle" class="form-label fw-bold">Page Title</label>
+                            <input asp-for="PageTitle" class="form-control" />
+                            <span asp-validation-for="PageTitle" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <!-- Page URL -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="PageUrl" class="form-label fw-bold">Page URL</label>
+                            <input asp-for="PageUrl" class="form-control" />
+                            <span asp-validation-for="PageUrl" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <!-- Page Heading -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="PageHeading" class="form-label fw-bold">Page Heading</label>
+                            <input asp-for="PageHeading" class="form-control" />
+                            <span asp-validation-for="PageHeading" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <!-- Page Data -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="PageData" class="form-label fw-bold">Page Data</label>
+                            <textarea asp-for="PageData" class="form-control" rows="4"></textarea>
+                            <span asp-validation-for="PageData" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <!-- Page Photo -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="PagePic" class="form-label fw-bold">Page Photo</label>
+                            <input asp-for="PagePic" class="form-control" type="file" />
+                            <span asp-validation-for="PagePic" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-4">
+                    <button type="button" id="submitBtn" class="btn btn-success px-4">
+                        <i class="fas fa-save"></i> Create
+                    </button>
+                    <a asp-action="GetWebPageList" asp-controller="Page" class="btn btn-secondary px-4">
+                        <i class="fas fa-arrow-left"></i> Back to List
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+    <script>
+        $(document).ready(function () {
+            $('#submitBtn').click(function () {
+
+                var form = $('#noticeForm')[0];
+
+                // Validate the form
+                if (form.checkValidity()) {
+                   $('#loader').show();
+                    let formData = new FormData(form);
+                    $.ajax({
+                        url: '@Url.Action("AddPage", "Page")',
+                        type: 'POST',
+                        data: formData,
+                        processData: false, // Required for FormData
+                        contentType: false, // Required for FormData
+                        success: function (response) {
+                          $('#loader').hide();
+                            if (response.isSuccess && response.status == 1) {
+                                swal("Thank You!", response.message, "success", {
+                                    button: "Ok!"
+                                });
+                        }else if(response.isSuccess && response.status == 0)
+                            {
+                            swal({
+                                    title: "Warning!",
+                                    text: response.message,
+                                    icon: "warning",
+                                    button: "Ok!"
+                                });
+                            }
+                            else {
+                                // swal("Error", response.message, "error", {
+                                //     button: "Ok!"
+                                // });
+                                    swal({
+                                        title: "Warning!",
+                                        text: response.message,
+                                        icon: "warning",
+                                        button: "Ok!"
+                                    });
+
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                           $('#loader').hide();
+                            swal("Error", "Something went wrong while submitting the form.", "error", {
+                                button: "Ok!"
+                            });
+                        }
+                    });
+                } else {
+                   $('#loader').hide();
+                    form.classList.add('was-validated');
+                }
+            });
+        });
+    </script>
+

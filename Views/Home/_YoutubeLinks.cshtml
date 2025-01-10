@@ -1,0 +1,74 @@
+﻿<section class="about-section overflow-hidden py-5" style="background: linear-gradient(120deg, rgba(255, 153, 153, 0.8), rgba(87, 184, 194, 0.8)), url('/Images/welcome-bg.svg') no-repeat center; background-size:cover;">
+
+    <div class="container-fluid" id="videocon">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h3 class="fw-bold text-primary">
+                    <i class="fas fa-video me-2"></i> Iqra Educational Institute Video Gallery
+                </h3>
+
+                <p class="fs-5 text-dark-50">
+                    Welcome to the official video gallery of Iqra Educational Institute. Explore our latest events,
+                    educational sessions, and insights into the learning experiences we offer to our students.
+                </p>
+            </div>
+        </div>
+
+        <div class="container-fluid mb-4">
+            <div class="row gy-4" id="videoCardsContainer">
+                <!-- Video cards will be inserted dynamically here -->
+            </div>
+        </div>
+
+        <div class="text-center">
+            <a asp-action="AllYoutubeVideos" asp-controller="Home" class="btn btn-outline-light btn-lg px-4">
+                View All Videos
+            </a>
+        </div>
+    </div>
+</section>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#videocon').hide();
+        $.ajax({
+            url: '/Home/GetYoutubeLinks', // Your API endpoint
+            method: 'GET',
+            dataType: 'json',
+            success: function (youtubeVideos) {
+                const $videoCardsContainer = $('#videoCardsContainer');
+                if (youtubeVideos.length > 0) {
+                    $('#videocon').show();
+                    console.log('Fetched YouTube videos:', youtubeVideos);
+                    youtubeVideos.forEach(video => {
+                        if (video.url) {
+                            const card = `
+                                <div class="col-lg-4 col-md-6">
+                                    <div class="video-card shadow">
+                                        <div class="video-thumbnail">
+                                            <iframe src="https://www.youtube.com/embed/${video.videoId}" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" ></iframe>
+                                        </div>
+                                        <div class="video-info">
+                                            <p class="video-title">${video.title}</p>
+                                            <p class="video-description">${video.description}</p>
+                                        </div>
+                                    </div>
+                                </div>`;
+                            $videoCardsContainer.append(card);
+                            console.log('Added card for video ID:', video.VideoId);
+                        } else {
+                            console.warn('Missing VideoId for video:', video);
+                        }
+                    });
+                } else {
+                    console.warn('No videos found.');
+                }
+            },
+            error: function (error) {
+                console.error('Error fetching YouTube links:', error);
+            }
+        });
+    });
+</script>

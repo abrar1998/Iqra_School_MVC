@@ -1,0 +1,227 @@
+﻿@model List<SchoolProj.Models.Domain.Slider>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Crescent Public School</title>
+    <link rel="icon" type="image/x-icon" href="~/Images/logocrescent2.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600&family=Roboto&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/css/default.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="parent container-fluid d-flex flex-column min-vh-100 py-2">
+
+        <div class="text-center ">
+            <div class="d-flex justify-content-center align-items-center flex-wrap">
+                <!-- Logo on the left -->
+                <img src="~/Images/logocrescent2.png" alt="Logo" class="logo me-3" style="height: 50px;">
+
+                <!-- Heading in the center with href -->
+                <a href="/Home" class="text-decoration-none">
+                    <h1 class="mb-0 head">Crescent Public School</h1>
+                </a>
+            </div>
+            <!-- Address below the heading -->
+            <p class="mt-2 text-muted" style="font-size: 1rem;">Habak, Naseem Bagh, Srinagar</p>
+        </div>
+
+
+        <!-- Notification Section start-->
+
+
+        <div class="notification-container mb-2" style="display: flex; justify-content: space-between; align-items: center; width: 80%; margin: auto;">
+            <div style="display: flex; align-items: center;">
+                <i class="fa-solid fa-bell notification-icon"></i>
+                <div style="margin-left: 10px;">
+                    <div class="notification-text" id="notificationTitle">Loading notifications...</div>
+                </div>
+            </div>
+            <div style="margin-left: 20px; font-size: 14px;">
+                <a asp-action="Notices" asp-controller="Public" id="viewAllNotifications" style="text-decoration: none; color: #007bff; cursor: pointer;">View All</a>
+            </div>
+        </div>
+
+        @*  <marquee behavior="scroll" direction="left" scrollamount="10" style="width: 100%;">
+            <div class="notification-container mb-2" style="display: flex; justify-content: space-between; align-items: center; width: 60%; margin: auto;">
+                <div style="display: flex; align-items: center;">
+                    <i class="fa-solid fa-bell notification-icon"></i>
+                    <div style="margin-left: 10px;" class="d-flex justify-content-center align-items-center ">
+                        <div class="notification-text" id="notificationTitle">Loading notifications...</div>
+                    </div>
+                </div>
+                <div style="margin-left: 20px; font-size: 14px;">
+                    <a href="/path-to-notifications" id="viewAllNotifications" style="text-decoration: none; color: #007bff; cursor: pointer;">View All Notifications</a>
+                </div>
+            </div>
+        </marquee> *@
+
+
+        <!-- Notification Section End-->
+
+        <!-- Content row with stylish border -->
+        <!-- Content row with stylish border -->
+        <div class="row flex-grow-1 gx-5 border rounded-3 shadow-md mx-auto" style="border: 2px solid #ddd; border-radius: 20px; width: 100%;">
+            <!-- First Column -->
+            <div class="col-md-6 d-flex flex-column align-items-center text-center">
+                <div class="mb-3 w-100">
+                    <a asp-action="DirectorAndChairmanMessage" asp-controller="Home" class="btn btn-custom w-100">
+                        <i class="fas fa-user-tie me-2"></i>Director's Message
+                    </a>
+                </div>
+
+                <div class="d-flex justify-content-between flex-wrap mb-3 w-100 mt-5">
+                    <a href="http://payfee.crescentps.in/StudentLogin/Default.aspx" target="_blank" class="btn btn-outline-dark flex-grow-1 mb-2 me-2"><i class="fas fa-money-check-alt me-2"></i>Pay Online Fee</a>
+                    <a href="#" class="btn btn-outline-dark flex-grow-1 mb-2 me-2"><i class="fas fa-briefcase me-2"></i>Online Job Form</a>
+                    <a href="/AllDownloads" class="btn btn-outline-dark flex-grow-1 mb-2"><i class="fas fa-suitcase-rolling me-2"></i>Downloads</a>
+                </div>
+                <div class="d-flex justify-content-between flex-wrap mb-3 w-100 mt-5">
+                    <a href="https://www.facebook.com/cpsian/about/" target="_blank" class="btn btn-outline-dark flex-grow-1 mb-2 me-2"><i class="fab fa-facebook-f me-2"></i>FaceBook</a>
+                    <a href="https://www.instagram.com/crescent_public_school_cps/" target="_blank" class="btn btn-outline-dark flex-grow-1 mb-2 me-2"><i class="fas fa-instagram me-2"></i>Instagram</a>
+                    <a href="https://play.google.com/store/apps/details?id=com.nits.cps.app" class="btn btn-outline-dark flex-grow-1 mb-2 me-2" target="_blank" >
+                        <i class="fab fa-android me-2"></i> <!-- Android icon -->
+                      Download App
+                    </a>
+
+                </div>
+                <div class="d-flex justify-content-between flex-wrap mb-3 w-100 mt-5">
+                    <a href="/Home/Page=privacypolicy/20008" class="btn btn-outline-dark flex-grow-1 mb-2 me-2"><i class="fas fa-user-shield me-2"></i>Privacy Policy</a>
+                    <a href="/Home/Page=terms&conditions/20009" class="btn btn-outline-dark flex-grow-1 mb-2 me-2"><i class="fas fa-balance-scale me-2"></i>Terms & Conditions</a>
+                    <a href="/Home/Page=refundpolicy/20010" class="btn btn-outline-dark flex-grow-1 mb-2"><i class="fas fa-money-bill-wave me-2"></i>Refund Policy</a>
+                </div>
+            </div>
+
+            <!-- Second Column (Dynamic Carousel) -->
+            @if (ViewBag.ShowDefaultCarousel == true)
+            {
+                <div class="col-md-6">
+                    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></button>
+                        </div>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="~/Images/caro0.jpg" class="d-block w-100 carousel-image" alt="...">
+                                <div class="carousel-caption d-md-block">
+                                    <a href="/Home">
+                                        <h5>Welcome to Crescent Public School</h5>
+                                    </a>
+                                    <p><a href="#" class="text-decoration-none text-white">Learn More About Our School</a></p>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <img src="~/Images/caro1.jpg" class="d-block w-100 carousel-image" alt="...">
+                                <div class="carousel-caption d-md-block">
+                                    <h5>Our Mission</h5>
+                                    <p><a href="/Home" class="text-decoration-none text-white">Explore Our Educational Values</a></p>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <img src="~/Images/caro2.jpg" class="d-block w-100 carousel-image" alt="...">
+                                <div class="carousel-caption d-md-block">
+                                    <h5>Join Our Community</h5>
+                                    <p><a href="#" class="text-decoration-none text-white">Sign Up for Updates</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+
+                </div>
+            }
+            else
+            {
+                <div class="col-md-6">
+                    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                            @for (int i = 0; i < Model.Count; i++)
+                            {
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="@i" class="@(i == 0 ? "active" : "")" aria-current="@(i == 0 ? "true" : "false")" aria-label="Slide @i"></button>
+                            }
+                        </div>
+                        <div class="carousel-inner">
+                            @for (int i = 0; i < Model.Count; i++)
+                            {
+                                var slide = Model[i];
+                                <div class="carousel-item @(i == 0 ? "active" : "")">
+                                    <img src="@Url.Content(slide.SliderImage)" class="d-block w-100 carousel-image" alt="Slide @i">
+                                    <div class="carousel-caption d-md-block">
+                                        <h5>@slide.SLiderTitle</h5>
+                                        <p>@slide.SliderDesc</p>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            }
+
+            
+        </div>
+
+
+    </div>
+
+    <!-- Fixed Footer -->
+    <footer class="footer text-center mt-5">
+        <a href="#" class="d-block mb-2"><i class="fas fa-envelope"></i>info@crescentps.in</a>
+        <p class="mb-0">&copy; 2024 All Rights Reserved | Powered By National IT Solutions</p>
+    </footer>
+
+
+    <div class="social-buttons">
+        <!-- <a href="https://wa.me/yournumber" target="_blank" class="btn whatsapp-btn">
+          <i class="fab fa-whatsapp"></i>
+        </a> -->
+        <a href="https://www.instagram.com/crescent_public_school_cps/" target="_blank" class="btn instagram-btn">
+            <i class="fa-brands fa-instagram"></i>
+        </a>
+        <a href="https://www.facebook.com/cpsian" target="_blank" class="btn facebook-btn">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+    </div>
+
+   
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+    @* // JavaScript for Dynamic Notifications *@
+    <script src="~/js/Notification.js" asp-append-version="true"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  
+</body>
+
+
+</html>
+

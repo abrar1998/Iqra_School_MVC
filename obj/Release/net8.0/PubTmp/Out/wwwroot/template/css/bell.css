@@ -1,0 +1,54 @@
+﻿
+/* Notification Container */
+.notification-container {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 15px 20px;
+    width: 80%; /* Covers 80% of the screen */
+    margin: 20px auto;
+}
+
+/* Bell Icon */
+.notification-icon {
+    font-size: 30px;
+    color: #ff4d4f;
+    margin-right: 20px;
+}
+
+/* Notification Text */
+.notification-text {
+    flex-grow: 1;
+    color: #333;
+    font-size: 18px;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Fade-In Animation */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Description Text */
+.notification-description {
+    color: #555;
+    font-size: 16px;
+    margin-top: 5px;
+    width: 100%;
+}
+
+/*notification end*/

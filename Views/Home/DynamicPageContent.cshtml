@@ -1,0 +1,80 @@
+﻿@model SchoolProj.Models.Domain.Page
+@{
+    ViewData["Title"] = "AboutUs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!-- Header Start -->
+<!-- Header Start -->
+@* <div class="container-fluid bg-breadcrumb" style="background-image: url('@Model.PagePic');"> *@
+<div class="container-fluid bg-breadcrumb"
+     style="background: linear-gradient(rgba(19, 53, 123, 0.5), rgba(19, 53, 123, 0.5)),
+            url('@Model.PagePic') no-repeat center center;
+            background-size: cover;
+            height: 200px;">
+    <div class="d-flex justify-content-center align-items-center h-100">
+        <h3 class="text-white mb-2" style="
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 3px;">
+            @Model.PageTitle
+        </h3>
+    </div>
+</div>
+
+<!-- Header End -->
+<!-- Header End -->
+<!-- Dynamic content Start -->
+
+@* <div class="container my-5"> *@
+@*     <div class="row"> *@
+@*         <!-- About Text Section --> *@
+@*         <div class="col-md-12 bg-light shadow-sm rounded p-4"> *@
+@*             <!-- Heading --> *@
+@*             <h2 class="text-center text-primary fw-bold mb-4"> *@
+@*                 @Model.PageHeading *@
+@*             </h2> *@
+
+@*             <!-- Decorative Line Under Heading --> *@
+@*             <div class="text-center mb-4"> *@
+@*                 <div class="d-inline-block bg-primary" style="width: 100px; height: 4px;"></div> *@
+@*             </div> *@
+
+@*             <!-- Content --> *@
+@*             <div class="content fs-5 " style="text-align: justify; line-height: 1.8;"> *@
+@*                 @Html.Raw(Model.PageData) *@
+@*             </div> *@
+@*         </div> *@
+@*     </div> *@
+@* </div> *@
+
+<div class="container-fluid my-5">
+    <div class="row">
+        <!-- About Text Section -->
+        <div class="col-md-12  p-5">
+            <!-- Heading -->
+            <h2 class="text-center stylish-heading mb-4">
+                @Model.PageHeading
+            </h2>
+
+            <!-- Decorative Line Under Heading -->
+            <div class="text-center mb-4">
+                <div class="d-inline-block decorative-line"></div>
+            </div>
+
+            <!-- Content -->
+            <div class=" stylish-content">
+                @Html.Raw(Model.PageData)
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- Dynamic Content End -->
+

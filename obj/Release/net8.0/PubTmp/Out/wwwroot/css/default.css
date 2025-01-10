@@ -1,0 +1,434 @@
+﻿/* General styling */
+.parent {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* Stylish font and color for the heading */
+h1 {
+    font-family: 'Playfair Display', serif; /* Stylish serif font */
+    font-size: 2.5rem; /* Adjust font size */
+    font-weight: 700; /* Bold weight */
+    color: #4b3832; /* Rich brown color */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    letter-spacing: 2px; /* Slight spacing for elegance */
+    margin-bottom: 20px; /* Space below heading */
+}
+
+    h1:hover {
+        color: #6d4c41; /* Softer brown on hover */
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4); /* Enhanced shadow effect */
+        transition: color 0.3s, text-shadow 0.3s; /* Smooth transition */
+    }
+
+
+.logo {
+    width: 60px;
+    height: 60px;
+}
+
+h3 {
+    font-weight: bold;
+    color: #333;
+}
+
+
+/* Anchor tag styling */
+a {
+    color: #00796b; /* Stylish teal color for contrast */
+    text-decoration: none; /* Remove underline */
+    font-family: 'Roboto', sans-serif; /* Modern sans-serif font */
+    font-weight: 500; /* Medium weight for better readability */
+    transition: color 0.3s, transform 0.2s; /* Smooth transitions */
+}
+
+    a:hover {
+        /* color: #004d41; Darker teal on hover for emphasis */
+        transform: scale(1.05); /* Slight zoom effect on hover */
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    }
+
+/* Button Styling for director's message button*/
+.btn-custom {
+    background-color: #ff6f61; /* Soft coral color */
+    color: white; /* White text */
+    font-family: 'Poppins', sans-serif; /* Modern and clean font */
+    font-weight: 600; /* Slightly bolder for emphasis */
+    padding: 12px 20px; /* Adjust padding for better visual balance */
+    border: none; /* Remove default border */
+    border-radius: 30px; /* Rounded corners */
+    text-transform: uppercase; /* Uppercase text for a sleek look */
+    letter-spacing: 1px; /* Slight spacing between letters for better readability */
+    transition: background-color 0.3s, transform 0.2s; /* Smooth transition on hover */
+}
+
+    .btn-custom:hover {
+        background-color: #e94e3b; /* Slightly darker coral for hover effect */
+        transform: scale(1.05); /* Slight zoom effect */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add subtle shadow on hover */
+    }
+
+
+/* .btn:hover {
+    background-color: #003580;
+  } */
+
+.carousel-inner img {
+    height: 400px;
+    object-fit: cover;
+}
+
+/* Footer Styling */
+.footer {
+    background-color: #f1f1f1;
+    padding: 10px 0;
+    color: #555;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+    .footer a {
+        color: #555;
+    }
+
+        .footer a:hover {
+            color: #000;
+        }
+
+/* <!-- Add this CSS to style the carousel section  */
+.carousel-image-wrapper {
+    position: relative;
+}
+
+.carousel-image {
+    filter: opacity(0.5); /* Reduces image opacity */
+}
+
+.carousel-caption {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add shadow to the text */
+    z-index: 10;
+}
+
+.carousel-item {
+    background: rgba(0, 0, 0, 0.3); /* Adds a semi-transparent overlay */
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Adds shadow to the carousel item */
+}
+
+    .carousel-item img {
+        border-radius: 10px; /* Adds rounded corners to the image */
+    }
+
+.carousel-indicators button {
+    background-color: #4b3832; /* Stylish color for carousel indicators */
+}
+
+.carousel-indicators .active {
+    background-color: #3a2c26; /* Darker shade for active indicator */
+}
+
+.carousel-caption h3 {
+    font-size: 2.5rem; /* Larger font size for heading */
+    font-weight: 700;
+}
+
+.carousel-caption p a {
+    font-size: 1.2rem;
+    font-weight: 400;
+    transition: color 0.3s;
+}
+
+    .carousel-caption p a:hover {
+        color: #ff6347; /* Hover effect for the hyperlink */
+    }
+
+@media (max-width: 768px) {
+    .carousel-caption h5 {
+        font-size: 1.5rem; /* Smaller font size for mobile */
+    }
+
+    .carousel-caption p a {
+        font-size: 1rem; /* Smaller font size for mobile */
+    }
+}
+
+/* Border styling for the row */
+.row {
+    border: 2px solid #ddd; /* Light gray border */
+    border-radius: 20px; /* Rounded corners for the border */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
+    padding: 20px;
+}
+
+/* For mobile devices, adjust the layout to make the columns stack */
+@media (max-width: 768px) {
+    .row {
+        flex-direction: column; /* Stack the columns on smaller screens */
+    }
+
+    .col-md-6 {
+        width: 100%; /* Ensure the columns take full width on mobile */
+    }
+}
+
+
+/* Media query for small devices (phones, tablets, etc.) */
+@media (max-width: 767px) {
+    .carousel-caption {
+        position: absolute;
+        top: 50vh; /* 50% of viewport height */
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        width: 100%;
+        padding: 0;
+    }
+
+    .carousel-inner, .carousel-item {
+        max-width: 100%;
+        max-height: 80%;
+    }
+
+    /* Optional: Adjust font size for better readability on small screens */
+    .carousel-caption h5 {
+        font-size: 1.5rem; /* Adjust as needed */
+    }
+
+    .carousel-caption p {
+        font-size: 1rem; /* Adjust as needed */
+    }
+
+    .carousel-item, .carousel-image {
+        width: 100%;
+        background-size: cover;
+    }
+}
+
+
+.carousel-caption {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    /* background-color: rgba(0, 0, 0, 0.6); Semi-transparent background */
+    padding: 10px;
+    border-radius: 5px;
+    width: 80%;
+}
+
+    .carousel-caption h5 {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    .carousel-caption p {
+        font-size: 1rem;
+    }
+
+    .carousel-caption a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+.carousel-image {
+    object-fit: cover;
+    height: 400px;
+}
+
+.footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    background-color: #f8f9fa;
+    padding: 10px 0;
+}
+
+@media (max-width: 767px) {
+    .carousel-caption {
+        width: 100%;
+    }
+
+        .carousel-caption h5 {
+            font-size: 1.2rem;
+        }
+
+        .carousel-caption p {
+            font-size: 0.9rem;
+        }
+    /* .carousel-inner{
+      width: 100%;
+    } */
+
+
+
+}
+
+.carousel-image-wrapper {
+    max-width: 100%;
+}
+
+
+/* for new heading */
+/* Styling for the logo */
+.logo {
+    height: 50px; /* Default size */
+    width: auto; /* Maintain aspect ratio */
+}
+
+/* Styling for the heading */
+.head {
+    font-size: 2rem; /* Adjust heading size */
+    color: #13357b; /* School-themed color */
+    font-family: 'Poppins', sans-serif; /* Modern font */
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+}
+
+    .head:hover {
+        color: #ff5722; /* Highlight on hover */
+        text-decoration: underline; /* Optional hover effect */
+    }
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+    .head {
+        font-size: 1.5rem; /* Smaller font size for small devices */
+    }
+
+    .logo {
+        height: 40px; /* Smaller logo for small devices */
+    }
+}
+
+
+/* css for fixed contact buttons start */
+
+.social-buttons {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: row; /* Stack buttons vertically */
+    gap: 10px; /* Space between buttons */
+    z-index: 1000;
+}
+
+    .social-buttons .btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%; /* Circular buttons */
+        font-size: 24px;
+        color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        text-decoration: none;
+    }
+
+        .social-buttons .btn:hover {
+            transform: scale(1.1); /* Zoom effect */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+.whatsapp-btn {
+    background-color: #25D366; /* WhatsApp green */
+}
+
+    .whatsapp-btn:hover {
+        background-color: #20c05b;
+    }
+
+.instagram-btn {
+    background: radial-gradient(circle at 30% 30%, #fdf497 30%, #fd5949 60%, #d6249f 90%, #285AEB); /* Instagram gradient */
+}
+
+    .instagram-btn:hover {
+        filter: brightness(1.2);
+    }
+
+.facebook-btn {
+    background-color: #1877F2; /* Facebook blue */
+}
+
+    .facebook-btn:hover {
+        background-color: #145DBF;
+    }
+
+@media(max-width:768px) {
+    .social-buttons {
+        flex-direction: column;
+        bottom: 55px;
+    }
+}
+
+/* css for fixed contact buttons end */
+
+/* Notification Label Styling */
+
+/* Notification Container */
+.notification-container {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 15px 20px;
+    width: 80%; /* Covers 80% of the screen */
+    margin: 20px auto;
+}
+
+/* Bell Icon */
+.notification-icon {
+    font-size: 30px;
+    color: #ff4d4f;
+    margin-right: 20px;
+}
+
+/* Notification Text */
+.notification-text {
+    flex-grow: 1;
+    color: #333;
+    font-size: 18px;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Fade-In Animation */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Description Text */
+.notification-description {
+    color: #555;
+    font-size: 16px;
+    margin-top: 5px;
+    width:100%;
+}
+
+/*notification end*/

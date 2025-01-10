@@ -1,0 +1,225 @@
+﻿@model SchoolProj.Models.DTO.DownloadViewModel
+
+@{
+    ViewData["Title"] = "AddDownload";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<style>
+    .form-header {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+        font-weight: bold;
+        color: #4b6584;
+        text-transform: uppercase;
+    }
+
+    .form-layout {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: #ffffff;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+        font-weight: bold;
+        color: #4b6584;
+    }
+
+    .form-control,
+    .form-select {
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+    }
+
+        .form-control:focus,
+        .form-select:focus {
+            border-color: #4b6584;
+            box-shadow: 0 0 0 0.2rem rgba(75, 101, 132, 0.25);
+        }
+
+    .btn-custom {
+        background-color: #4b6584;
+        color: #fff;
+        padding: 0.5rem 1.5rem;
+        border-radius: 5px;
+        font-size: 1rem;
+    }
+
+        .btn-custom:hover {
+            background-color: #3b4d64;
+            color: #fff;
+        }
+
+    .btn-outline-secondary {
+        color: #4b6584;
+        border-color: #4b6584;
+    }
+
+        .btn-outline-secondary:hover {
+            background-color: #4b6584;
+            color: #fff;
+            border-color: #4b6584;
+        }
+
+    .text-danger {
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+
+</style>
+
+
+<div class="container mt-4 ">
+    <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white text-center">
+            <h3>Add Download</h3>
+        </div>
+        <div class="card-body" style="height:400px;">
+            <form id="downloadForm" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="row mb-3">
+                    <!-- Download Title -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Title" class="form-label fw-bold">Download Title <span class="text-danger">*</span></label>
+                            <input asp-for="Title" class="form-control" required />
+                            <span asp-validation-for="Title" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <!-- Download Description -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Description" class="form-label fw-bold">Download Description <span class="text-danger">*</span></label>
+                            <input asp-for="Description" class="form-control" required />
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <!-- Download Type (Examinations) -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="DType" class="form-label fw-bold">Download Type <span class="text-danger">*</span></label>
+                            <select asp-for="DType" class="form-control" id="examDropdown" required asp-items="ViewBag.DownloadTypes">
+                                <option value="" selected disabled>-- Select type --</option>
+                               
+                            </select>
+                            <span asp-validation-for="DType" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <!-- Class Selection -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="ClassID" class="form-label fw-bold">Class <span class="text-danger">*</span></label>
+                            <select asp-for="ClassID" class="form-control" id="classDropdown" required asp-items="ViewBag.ClassList">
+                                <option value="" selected disabled>-- Select Class --</option>
+                                <
+                            </select>
+                            <span asp-validation-for="ClassID" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <!-- Date -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="DDate" class="form-label fw-bold">Date <span class="text-danger">*</span></label>
+                            <input asp-for="DDate" id="datePicker" class="form-control" type="text" placeholder="dd - MM-yyyy" />
+                            <span asp-validation-for="DDate" class="text-danger"></span>
+                        </div>
+
+                    </div>
+
+                    <!-- File -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="FilePath" class="form-label fw-bold">Upload File  <span class="text-muted">(PDF, Word, Excel; Max: 500 MB)</span> <span class="text-danger">*</span></label>
+                            <input asp-for="FilePath" class="form-control" type="file" required />
+                            <span asp-validation-for="FilePath" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-4">
+                    <button type="button" id="submitBtn" class="btn btn-success px-4">
+                        <i class="fas fa-save"></i> Create
+                    </button>
+                    <a asp-action="DownLoadList" asp-controller="Downloads" class="btn btn-secondary px-4">
+                        <i class="fas fa-arrow-left"></i> Back to List
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+
+       
+
+        //date picker start
+         $("#datePicker").datepicker({
+            dateFormat: "dd-mm-yy", // Format for the date
+            changeMonth: true,     // Enable month dropdown
+            changeYear: true       // Enable year dropdown
+        });
+        //date picker end
+
+        $('#submitBtn').click(function () {
+            var form = $('#downloadForm')[0];
+
+            // Validate the form
+            if (form.checkValidity()) {
+                  $('#loader').show();
+                let formData = new FormData(form);
+                $.ajax({
+                    url: '@Url.Action("AddDownload", "Downloads")',
+                    type: 'POST',
+                    data: formData,
+                    processData: false, // Required for FormData
+                    contentType: false, // Required for FormData
+                    success: function (response) {
+                          $('#loader').hide();
+                        if (response.isSuccess && response.status == 1) {
+                            swal("Thank You!", response.message, "success", {
+                                button: "Ok!"
+                            });
+                        }else if(response.isSuccess && response.status == 0)
+                        {
+                                swal({
+                                    title: "Warning!",
+                                    text: response.message,
+                                    icon: "warning",
+                                    button: "Ok!"
+                                });
+
+                        }
+                        else {
+                            swal("Error", response.error, "error", {
+                                button: "Ok!"
+                            });
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                          $('#loader').hide();
+                        swal("Error", "Something went wrong while submitting the form.", "error", {
+                            button: "Ok!"
+                        });
+                    }
+                });
+            } else {
+                   $('#loader').hide();
+                form.classList.add('was-validated');
+            }
+        });
+    });
+</script>

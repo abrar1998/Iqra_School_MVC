@@ -1,0 +1,162 @@
+﻿@model SchoolProj.Models.Domain.Slider
+
+@{
+    ViewData["Title"] = "AddSlider";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<style>
+    .form-header {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+        font-weight: bold;
+        color: #4b6584;
+        text-transform: uppercase;
+    }
+
+    .form-layout {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: #ffffff;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+        font-weight: bold;
+        color: #4b6584;
+    }
+
+    .form-control,
+    .form-select {
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+    }
+
+        .form-control:focus,
+        .form-select:focus {
+            border-color: #4b6584;
+            box-shadow: 0 0 0 0.2rem rgba(75, 101, 132, 0.25);
+        }
+
+    .btn-custom {
+        background-color: #4b6584;
+        color: #fff;
+        padding: 0.5rem 1.5rem;
+        border-radius: 5px;
+        font-size: 1rem;
+    }
+
+        .btn-custom:hover {
+            background-color: #3b4d64;
+            color: #fff;
+        }
+
+    .btn-outline-secondary {
+        color: #4b6584;
+        border-color: #4b6584;
+    }
+
+        .btn-outline-secondary:hover {
+            background-color: #4b6584;
+            color: #fff;
+            border-color: #4b6584;
+        }
+
+    .text-danger {
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+
+</style>
+
+
+<div class="container-fluid mt-4 mb-5">
+    <h3 class="form-header text-center">Create New Slide</h3>
+    <form id="sliderForm" method="post" enctype="multipart/form-data" class="form-layout">
+        <!-- Row 1: Notification Date and Title -->
+        <div class="row">
+            
+            <div class="col-md-6 mb-3">
+                <label for="SLiderTitle" class="form-label">Slider Title <span class="text-danger">*</span></label>
+                <input asp-for="SLiderTitle" type="text" id="SLiderTitle" class="form-control" placeholder="Enter Slider title" required />
+                <span asp-validation-for="SLiderTitle" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label for="SliderImage" class="form-label">Slider Image <span class="text-muted">(Max: 1 MB)</span></label>
+                <input asp-for="SliderImage" type="file" id="SliderImage" class="form-control" accept="image/*" />
+                <small class="text-danger" id="imageError"></small>
+            </div>
+
+        </div>
+
+        <!-- Row 2: Notification Description and Type -->
+        <div class="row">
+           
+            <div class="col-md-12 mb-3">
+                <label for="SliderDesc" class="form-label">Slider Description <span class="text-danger">*</span></label>
+                <textarea asp-for="SliderDesc" rows="3" id="SliderDesc" class="form-control" placeholder="Enter slider description" required></textarea>
+                <span asp-validation-for="SliderDesc" class="text-danger"></span>
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="text-center mt-4">
+            <button type="button" class="btn btn-custom" id="submitBtn">Submit</button>
+            <button type="reset" class="btn btn-outline-warning">Reset</button>
+        </div>
+    </form>
+</div>
+
+<script>
+
+
+        $(document).ready(function () {
+        $('#submitBtn').click(function () {
+            var form = $('#sliderForm')[0];
+
+            // Validate the form
+            if (form.checkValidity()) {
+                  $('#loader').show();
+                let formdata = new FormData(form);
+                $.ajax({
+                    url: '@Url.Action("AddSlider", "Slider")',
+                    type: 'POST',
+                    data: formdata,
+                    processData: false, // Required for FormData
+                    contentType: false, // Required for FormData
+                    success: function (response) {
+                          $('#loader').hide();
+                        // Handle the success response
+                        if (response.isSuccess && response.status) {
+                            // alert("Form submitted successfully");
+                            swal("Thank You!", response.message, "success", {
+                                button: "Ok!"
+                            });
+                        } else {
+                            // Handle the error response
+                            // alert("Failed");
+                            swal("Error", response.message, "error", {
+                                button: "Ok!"
+                            });
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        // Handle AJAX error
+                          $('#loader').hide();
+                        swal("Error", "Something went wrong while submitting the notice.", "error", {
+                            button: "Ok!"
+                        });
+                    }
+                });
+            } else {
+                  $('#loader').hide();
+                // Trigger form validation
+                form.classList.add('was-validated');
+            }
+        });
+    });
+
+</script>

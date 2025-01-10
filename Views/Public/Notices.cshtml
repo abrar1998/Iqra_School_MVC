@@ -1,0 +1,172 @@
+﻿@model IEnumerable<SchoolProj.Models.DTO.NoticeDTO>
+@using System.Globalization
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var notifications = Model.Where(x => x.Ncid == "1").OrderByDescending(n => n.NDate).ToList();
+    var events = Model.Where(x => x.Ncid == "2").OrderByDescending(n => n.NDate).ToList();
+    var news = Model.Where(x => x.Ncid == "3").OrderByDescending(n => n.NDate).ToList();
+}
+
+@* Page Header Start *@
+<div class="container-fluid bg-breadcrumb"
+     style="height: 200px;
+            background: linear-gradient(rgba(19, 53, 123, 0.5), rgba(19, 53, 123, 0.5)),
+                        url('/Images/iqrabg.jpg') no-repeat center center;
+            background-size: cover;">
+    <div class="d-flex justify-content-center align-items-center h-100">
+        <h3 class="text-white mb-0" style="
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 3px;">
+            All Notices and Events
+        </h3>
+    </div>
+</div>
+
+@* Page Header End *@
+
+<div class="container py-5">
+    <!-- Stylish Announcements Heading -->
+    <div class="text-center mb-5">
+        <h1 class="fw-bold text-uppercase" style="color: #007bff;">Announcements</h1>
+        <p class="text-success">Stay updated with the latest notifications, events, and news!</p>
+    </div>
+
+    <div class="row g-4">
+        <!-- Notifications -->
+        <div class="col-lg-4 col-md-6">
+            <div class="card shadow-lg" style="min-height: 500px;">
+                <div class="card-header bg-primary text-white text-center">
+                    <h5 class="text-white">Notifications</h5>
+                </div>
+                <div class="card-body scrollable-div">
+                    @if (notifications.Any())
+                    {
+                        foreach (var item in notifications)
+                        {
+                            string dateString = item.NDate.ToString();
+                            DateTime parsedDate;
+                            bool isValidDate = DateTime.TryParseExact(dateString, "dd-MM-yyyy HH:mm:ss",
+                            CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedDate);
+                            if (!isValidDate)
+                            {
+                                parsedDate = DateTime.Parse(dateString); // Fallback to default parsing if the format doesn't match
+                            }
+
+                            <div class="d-flex mb-4">
+                                <img src="@item.ThumbNail" class="img-thumbnail rounded me-3" style="width: 80px; height: 80px;" alt="Notification Image">
+                                <div>
+                                    <h6><a href="@Url.Action("GetNotice", "Home", new { id = item.Nid })" class="text-primary text-decoration-none">@item.Title</a></h6>
+                                    <p class="text-muted"><small>@parsedDate.ToString("dd MMM yyyy")</small></p>
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <p class="text-center text-muted">No notifications available.</p>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Events -->
+        <div class="col-lg-4 col-md-6">
+            <div class="card shadow-lg" style="min-height: 500px;">
+                <div class="card-header bg-success text-white text-center">
+                    <h5 class="text-white">Events</h5>
+                </div>
+                <div class="card-body scrollable-div">
+                    @if (events.Any())
+                    {
+                        foreach (var item in events)
+                        {
+                            string dateString = item.NDate.ToString();
+                            DateTime parsedDate;
+                            bool isValidDate = DateTime.TryParseExact(dateString, "dd-MM-yyyy HH:mm:ss",
+                            CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedDate);
+                            if (!isValidDate)
+                            {
+                                parsedDate = DateTime.Parse(dateString); // Fallback to default parsing if the format doesn't match
+                            }
+
+                            <div class="d-flex mb-4">
+                                <img src="@item.ThumbNail" class="img-thumbnail rounded me-3" style="width: 80px; height: 80px;" alt="Event Image">
+                                <div>
+                                    <h6><a href="@Url.Action("GetNotice", "Home", new { id = item.Nid })" class="text-primary text-decoration-none">@item.Title</a></h6>
+                                    <p class="text-muted"><small>@parsedDate.ToString("dd MMM yyyy")</small></p>
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <p class="text-center text-muted">No events available.</p>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Latest News -->
+        <div class="col-lg-4 col-md-6">
+            <div class="card shadow-lg" style="min-height: 500px;">
+                <div class="card-header bg-warning text-dark text-center">
+                    <h5 class="text-primary">Latest News</h5>
+                </div>
+                <div class="card-body scrollable-div">
+                    @if (news.Any())
+                    {
+                        foreach (var item in news)
+                        {
+                            string dateString = item.NDate.ToString();
+                            DateTime parsedDate;
+                            bool isValidDate = DateTime.TryParseExact(dateString, "dd-MM-yyyy HH:mm:ss",
+                            CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedDate);
+                            if (!isValidDate)
+                            {
+                                parsedDate = DateTime.Parse(dateString); // Fallback to default parsing if the format doesn't match
+                            }
+
+                            <div class="d-flex mb-4">
+                                <img src="@item.ThumbNail" class="img-thumbnail rounded me-3" style="width: 80px; height: 80px;" alt="News Image">
+                                <div>
+                                    <h6><a href="@Url.Action("GetNotice", "Home", new { id = item.Nid })" class="text-primary text-decoration-none">@item.Title</a></h6>
+                                    <p class="text-muted"><small>@parsedDate.ToString("dd MMM yyyy")</small></p>
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <p class="text-center text-muted">No news available.</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .scrollable-div {
+        max-height: 400px;
+        overflow-y: auto;
+        padding: 10px;
+    }
+
+        .scrollable-div::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .scrollable-div::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 10px;
+        }
+
+            .scrollable-div::-webkit-scrollbar-thumb:hover {
+                background: #999;
+            }
+</style>

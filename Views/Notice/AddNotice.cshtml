@@ -1,0 +1,224 @@
+﻿@model SchoolProj.Models.DTO.NoticeViewModel
+
+@{
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+<style>
+    .form-header {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+        font-weight: bold;
+        color: #4b6584;
+        text-transform: uppercase;
+    }
+
+    .form-layout {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: #ffffff;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+        font-weight: bold;
+        color: #4b6584;
+    }
+
+    .form-control,
+    .form-select {
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+    }
+
+        .form-control:focus,
+        .form-select:focus {
+            border-color: #4b6584;
+            box-shadow: 0 0 0 0.2rem rgba(75, 101, 132, 0.25);
+        }
+
+    .btn-custom {
+        background-color: #4b6584;
+        color: #fff;
+        padding: 0.5rem 1.5rem;
+        border-radius: 5px;
+        font-size: 1rem;
+    }
+
+        .btn-custom:hover {
+            background-color: #3b4d64;
+            color: #fff;
+        }
+
+    .btn-outline-secondary {
+        color: #4b6584;
+        border-color: #4b6584;
+    }
+
+        .btn-outline-secondary:hover {
+            background-color: #4b6584;
+            color: #fff;
+            border-color: #4b6584;
+        }
+
+    .text-danger {
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+
+    #quill-editor {
+        height: 200px;
+    }
+</style>
+
+<!-- Include Quill CSS and JS -->
+<link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
+<script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script>
+
+<div class="container-fluid mt-4 mb-5">
+    <h3 class="form-header text-center">Create New Notice</h3>
+    <form id="noticeForm" method="post" enctype="multipart/form-data" class="form-layout">
+        <!-- Row 1: Notification Date and Title -->
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="NDate" class="form-label">Notice Date <span class="text-danger">*</span></label>
+                <input asp-for="NDate" id="datePicker" class="form-control" required placeholder="click here to select date" />
+                <span asp-validation-for="NDate" class="text-danger"></span>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="Title" class="form-label">Notice Title <span class="text-danger">*</span></label>
+                <input asp-for="Title" type="text" id="Title" class="form-control" placeholder="Enter Notice title" required />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+        </div>
+
+        <!-- Row 2: Notification Description and Type -->
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="Ncid" class="form-label">Notice Type <span class="text-danger">*</span></label>
+                <select asp-for="Ncid" class="form-select" required>
+                    <option value="">-- Select Type --</option>
+                    <option value="1">Notification</option>
+                    <option value="2">Event</option>
+                    <option value="3">Latest News</option>
+                </select>
+                <span asp-validation-for="Ncid" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label for="ThumbNail" class="form-label">Thumbnail Image <span class="text-muted">(Max: 1 MB)</span></label>
+                <input asp-for="ThumbNail" type="file" id="ThumbNail" class="form-control" accept="image/*" required />
+                <small class="text-danger" id="imageError"></small>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-3 d-flex align-items-center">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="IsFileCheckbox">
+                    <label class="form-check-label" for="IsFileCheckbox">Is any file?</label>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-3" id="fileUploads" style="display: none;">
+                <label for="FilePath" class="form-label">Upload File <span class="text-muted">(PDF, Word, Excel; Max: 500 MB)</span></label>
+                <input asp-for="FilePath" type="file" id="FilePath" class="form-control" accept=".pdf,.doc,.docx,.xls,.xlsx" />
+                <small class="text-danger" id="fileError"></small>
+            </div>
+        </div>
+
+        <!-- Row 3: Rich Text Editor -->
+        <div class="row">
+            <div class="col-md-12 mb-3">
+                <label for="Description" class="form-label">Notice Description <span class="text-danger">*</span></label>
+                <div id="quill-editor" style="height:400px"></div>
+                <textarea asp-for="Description" id="Description" class="form-control d-none" required></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="text-center mt-4">
+            <button type="button" class="btn btn-custom" id="submitBtn">Submit</button>
+            <button type="reset" class="btn btn-outline-warning">Reset</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    $(document).ready(function () {
+
+        //date picker start
+         $("#datePicker").datepicker({
+            dateFormat: "dd-mm-yy", // Format for the date
+            changeMonth: true,     // Enable month dropdown
+            changeYear: true       // Enable year dropdown
+        });
+         document.getElementById('IsFileCheckbox').addEventListener('change', function () {
+        const fileUploads = document.getElementById('fileUploads');
+        fileUploads.style.display = this.checked ? 'block' : 'none';
+
+    });
+        //date picker end
+        // Initialize Quill editor with enhanced toolbar
+        var quill = new Quill('#quill-editor', {
+            theme: 'snow',
+            placeholder: 'Enter notification description...',
+            modules: {
+                toolbar: [
+                    [{ 'header': [1, 2, 3, false] }], // Headers
+                    ['bold', 'italic', 'underline', 'strike'], // Text styling
+                    [{ 'color': [] }, { 'background': [] }], // Text color and background color
+                    [{ 'align': [] }], // Text alignment
+                    ['link', 'image', 'video'], // Media
+                    [{ 'list': 'ordered' }, { 'list': 'bullet' }], // Lists
+                    [{ 'script': 'sub' }, { 'script': 'super' }], // Subscript/Superscript
+                    [{ 'indent': '-1' }, { 'indent': '+1' }], // Indentation
+                    [{ 'direction': 'rtl' }], // Right-to-left
+                    ['clean'] // Remove formatting button
+                ]
+            }
+        });
+
+        // Sync Quill data to the hidden textarea
+        $('#submitBtn').click(function () {
+            $('#Description').val(quill.root.innerHTML);
+
+            var form = $('#noticeForm')[0];
+
+            // Validate the form
+            if (form.checkValidity()) {
+                 $('#loader').show();
+                let formdata = new FormData(form);
+                $.ajax({
+                    url: '@Url.Action("AddNotice", "Notice")',
+                    type: 'POST',
+                    data: formdata,
+                    processData: false, // Required for FormData
+                    contentType: false, // Required for FormData
+                    success: function (response) {
+                        $('#loader').hide();
+
+                        if (response.isSuccess && response.status == 1) {
+            swal("Thank You!", response.message, "success", { button: "Ok!" });
+        } else if (!response.isSuccess && response.status == 0) {
+            swal("Warning", response.message || "Something went wrong. Please check!", "warning", { button: "Ok!" });
+        } else {
+            swal("Error", response.error || "An unexpected error occurred.", "error", { button: "Ok!" });
+        }
+
+
+                    },
+                    error: function (xhr, status, error) {
+                         $('#loader').hide();
+                        swal("Error", "Something went wrong while submitting the notice.", "error", { button: "Ok!" });
+                    }
+                });
+            } else {
+                $('#loader').hide();
+                form.classList.add('was-validated');
+            }
+        });
+    });
+</script>

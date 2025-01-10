@@ -1,0 +1,124 @@
+﻿@model SchoolProj.Models.AccountDTO.LoginDTO
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crescent Public School</title>
+
+    <!-- Unicons -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+
+    <!-- Ensure correct path and versioning for your CSS -->
+    <link rel="stylesheet" href="~/css/Login.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Spinner.css" asp-append-version="true" />
+
+</head>
+<body>
+    <div class="loading" id="loader" style="display:none">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <!-- Home -->
+    <section class="home show">
+        <div class="form_container">
+            <!-- Login Form -->
+            <div class="form login_form">
+                <form asp-action="Login" asp-controller="Accounts" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger" style="color:red"></div>
+                    <h2>Login</h2>
+
+                    <div class="input_box">
+                        <input type="text" placeholder="Enter your username" asp-for="UserName" />
+                        <span asp-validation-for="UserName" class="text-danger" style="font-size:12px; color:red; margin-bottom:5px;"></span>
+                        <i class="uil uil-envelope-alt email"></i>
+                    </div>
+                    <div class="input_box">
+                        <input type="password" placeholder="Enter your password" asp-for="UserPassword" />
+                        <span asp-validation-for="UserPassword" class="text-danger" style="font-size:12px; color:red; margin-bottom:5px;"></span>
+                        <i class="uil uil-lock password"></i>
+                        <i class="uil uil-eye-slash pw_hide"></i>
+                    </div>
+
+                    <div class="option_field">
+                        <span class="checkbox">
+                            <input type="checkbox" id="check" asp-for="RememberMe" />
+                            <label for="check">Remember me</label>
+                        </span>
+                        <a href="#" class="forgot_pw">Forgot password?</a>
+                    </div>
+
+                    <button type="submit" class="button" id="btnSubmit">Login Now</button>
+
+                    <div class="login_signup"><a href="#" id="signup">Powered By National IT Solutions</a></div>
+                </form>
+            </div>
+
+            <!-- Signup Form (hidden for now) -->
+          @*   <div class="form signup_form">
+                <form action="#">
+                    <h2>Signup</h2>
+
+                    <div class="input_box">
+                        <input type="email" placeholder="Enter your email" required />
+                        <i class="uil uil-envelope-alt email"></i>
+                    </div>
+                    <div class="input_box">
+                        <input type="password" placeholder="Create password" required />
+                        <i class="uil uil-lock password"></i>
+                        <i class="uil uil-eye-slash pw_hide"></i>
+                    </div>
+                    <div class="input_box">
+                        <input type="password" placeholder="Confirm password" required />
+                        <i class="uil uil-lock password"></i>
+                        <i class="uil uil-eye-slash pw_hide"></i>
+                    </div>
+
+                    <button class="button">Signup Now</button>
+
+                    <div class="login_signup">Already have an account? <a href="#" id="login">Login</a></div>
+                </form>
+            </div> *@
+        </div>
+    </section>
+
+    <!-- JS Script to handle button click and show loader -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var btnSubmit = document.getElementById('btnSubmit');
+            var loader = document.getElementById('loader');
+
+            if (btnSubmit) {
+                btnSubmit.addEventListener('click', function(event) {
+                    // Prevent form submission to allow showing loader first
+                    event.preventDefault();
+                    loader.style.display = 'flex';
+
+                    // Submit the form after a brief delay to allow the loader to be visible
+                    setTimeout(function() {
+                        event.target.closest('form').submit();
+                    }, 500);
+                });
+            }
+        });
+    </script>
+
+    <!-- jQuery Script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- Your custom JavaScript for login behavior -->
+    <script src="~/js/LoginJs.js" asp-append-version="true"></script>
+
+</body>
+</html>

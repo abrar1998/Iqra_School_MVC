@@ -1,0 +1,89 @@
+﻿<div class="container-fluid bg-dark py-2">
+    <div class="row align-items-center text-center text-md-start">
+        <!-- Social Media Icons -->
+
+        <div class="col-md-3 d-flex justify-content-center justify-content-md-start mb-2 mb-md-0">
+            <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href="https://www.facebook.com/people/Iqra-Educational-InstituteBemina/100085884250753/"><i class="fab fa-facebook-f fw-normal"></i></a>
+            <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href="https://www.youtube.com/iqraeducationalinstitute1986"><i class="fab fa-youtube fw-normal"></i></a>
+            <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle" href="https://www.instagram.com/iqraedu_86/?__coig_restricted=1"><i class="fab fa-instagram fw-normal"></i></a>
+        </div>
+
+        <!-- Admission and Job Links -->
+        <div class="col-md-3 text-center text-md-start mb-2 mb-md-0 admission-job-links">
+            <a href="#" class="text-light me-3"><small><i class="fa fa-file-alt me-2"></i>Admission 2024 - 2025</small></a>
+            <br>
+            <a href="https://jobs.ieibemina.com/" target="_blank" class="text-light"><small><i class="fa fa-briefcase me-2"></i>Apply For Jobs</small></a>
+        </div>
+
+        <!-- Address and Email -->
+        <div class="col-md-3 d-flex flex-column text-center text-md-start address-email">
+            <a href="#" class="text-light me-3 mb-1"><small><i class="fa fa-map-marker-alt me-2" style="padding-left: 50px;"></i>Haji Abad Bemina, Srinagar</small></a>
+            <a href="#" class="text-light"><small><i class="fa fa-envelope-open me-2" style="padding-left: 50px;"></i>iiei.srinagar.gmail.com</small></a>
+        </div>
+
+        <!-- Phone Number -->
+        <div class="col-md-3 text-center text-md-end">
+            <a href="#" class="text-light"><small><i class="fa fa-phone-alt me-2"></i>0194-2491226 </small></a>
+            <br>
+            <a href="#" class="text-light"><small><i class="fa fa-phone-alt me-2"></i>+91 9541756867</small></a>
+        </div>
+    </div>
+</div>
+<!-- Topbar End -->
+
+
+
+<!--header start-->
+<header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid position-relative d-flex align-items-center justify-content-between">
+
+        <a href="/" class="logo d-flex align-items-center me-auto me-xl-0">
+            <!-- Uncomment the line below if you also wish to use an image logo -->
+            <img src="~/Images//log.jpg" alt="">
+            <h1 class="sitename">Iqra Educational Institute</h1>
+        </a>
+
+        <nav id="navmenu" class="navmenu">
+            <ul>
+                <li><a href="/" class="active">Home</a></li>
+                <li class="dropdown">
+                    <a href="#"><span>About</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                    <ul>
+                        <li><a href="/Home/Page=aboutus/20005">About School</a></li>
+                        <li><a href="/Home/Page=Facilities/1">Facilities</a></li>
+                        <li><a asp-action="DirectorAndChairmanMessage" asp-controller="Home">Chariman's Message</a></li>
+                        @* <li class="dropdown"> </li> *@
+
+                    </ul>
+                </li>
+                @* <li><a href="/Alldownloads">Downloads</a></li> *@
+                <li class="dropdown">
+                    <a href="#"><span>Downloads</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                    <ul>
+                        <li><a href="/Alldownloads">All Downloads</a></li>
+                        <li><a href="/Public/Notices">Events & Notifications</a></li>
+                        <li class="dropdown"> </li>
+
+                    </ul>
+                </li>
+                <li><a href="/Home/Page=Admission/2">Admission</a></li>
+                <li class="dropdown">
+                    <a href="#"><span>Academics</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                    <ul>
+                        <li><a href="/Home/Page=Academics/3">Academics</a></li>
+                        <li><a href="/Home/Page=Schoolcalander/4">School Calendar</a></li>
+                        <li class="dropdown"> </li>
+
+                    </ul>
+                </li>
+                <li class="me-5"><a href="/Home/Page=Contactus/5">Contact</a></li>
+            </ul>
+            <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+        </nav>
+
+        @* <a class="btn-getstarted" href="index.html#about">Get Started</a> *@
+
+    </div>
+</header>
+
+<!--Header end-->
