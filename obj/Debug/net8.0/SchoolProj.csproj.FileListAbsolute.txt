@@ -210,6 +210,7 @@ D:\Projects\SchoolProj_MVC_Iqra\obj\Debug\net8.0\SchoolProj.csproj.CoreCompileIn
 D:\Projects\SchoolProj_MVC_Iqra\obj\Debug\net8.0\SchoolProj.MvcApplicationPartsAssemblyInfo.cache
 D:\Projects\SchoolProj_MVC_Iqra\obj\Debug\net8.0\SchoolProj.RazorAssemblyInfo.cache
 D:\Projects\SchoolProj_MVC_Iqra\obj\Debug\net8.0\SchoolProj.RazorAssemblyInfo.cs
+D:\Projects\SchoolProj_MVC_Iqra\obj\Debug\net8.0\SchoolProj.sourcelink.json
 D:\Projects\SchoolProj_MVC_Iqra\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout1.cshtml.rz.scp.css
 D:\Projects\SchoolProj_MVC_Iqra\obj\Debug\net8.0\scopedcss\bundle\SchoolProj.styles.css
 D:\Projects\SchoolProj_MVC_Iqra\obj\Debug\net8.0\scopedcss\projectbundle\SchoolProj.bundle.scp.css

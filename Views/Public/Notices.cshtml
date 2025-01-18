@@ -4,9 +4,32 @@
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var notifications = Model.Where(x => x.Ncid == "1").OrderByDescending(n => n.NDate).ToList();
-    var events = Model.Where(x => x.Ncid == "2").OrderByDescending(n => n.NDate).ToList();
-    var news = Model.Where(x => x.Ncid == "3").OrderByDescending(n => n.NDate).ToList();
+    // var notifications = Model.Where(x => x.Ncid == "1").OrderBy(n => n.NDate).ToList();
+    var currentDate = DateTime.Now;
+
+    var notifications = Model
+        .Where(x => x.Ncid == "1")
+        .OrderByDescending(n => DateTime.Parse(n.NDate).Year)  // Sort by year, descending
+        .ThenByDescending(n => DateTime.Parse(n.NDate).Month) // Sort by month, descending
+        .ThenByDescending(n => DateTime.Parse(n.NDate).Day)   // Sort by day, descending
+        .ToList();
+
+    // var events = Model.Where(x => x.Ncid == "2").OrderByDescending(n => n.NDate).ToList();
+    // var news = Model.Where(x => x.Ncid == "3").OrderByDescending(n => n.NDate).ToList();
+    var events = Model
+       .Where(x => x.Ncid == "2")
+       .OrderByDescending(n => DateTime.Parse(n.NDate).Year)  // Sort by year, descending
+       .ThenByDescending(n => DateTime.Parse(n.NDate).Month) // Sort by month, descending
+       .ThenByDescending(n => DateTime.Parse(n.NDate).Day)   // Sort by day, descending
+       .ToList();
+
+    var news = Model
+        .Where(x => x.Ncid == "3")
+        .OrderByDescending(n => DateTime.Parse(n.NDate).Year)  // Sort by year, descending
+        .ThenByDescending(n => DateTime.Parse(n.NDate).Month) // Sort by month, descending
+        .ThenByDescending(n => DateTime.Parse(n.NDate).Day)   // Sort by day, descending
+        .ToList();
+
 }
 
 @* Page Header Start *@

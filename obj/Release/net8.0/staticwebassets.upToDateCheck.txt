@@ -197,6 +197,7 @@ wwwroot\Gallery\e797ff16-269c-48a7-8fbb-1db5fb87b8e0-iqrabg.jpg
 wwwroot\Gallery\f8589fdf-46c9-4ff0-904f-550bf92877d0-ik.jpg
 wwwroot\Images\12461028.jpg
 wwwroot\Images\bg.jpg
+wwwroot\Images\Default_noticeicon-sm.jpg
 wwwroot\Images\image13341117.jpg
 wwwroot\Images\image13341701.jpg
 wwwroot\Images\image13342346.jpg
@@ -207,6 +208,8 @@ wwwroot\Images\iqra-chairman.png
 wwwroot\Images\iqra-principal.png
 wwwroot\Images\layoutbg.png
 wwwroot\Images\log.jpg
+wwwroot\Images\logonew.png
+wwwroot\Images\newligi-ieibemina.png
 wwwroot\Images\section-bg.png
 wwwroot\Images\section-bg2.png
 wwwroot\Images\section-bg3.png

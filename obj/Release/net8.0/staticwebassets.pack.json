@@ -217,6 +217,10 @@
       "PackagePath": "staticwebassets\\Images\\12461028.jpg"
     },
     {
+      "Id": "D:\\Projects\\SchoolProj_MVC_Iqra\\wwwroot\\Images\\Default_noticeicon-sm.jpg",
+      "PackagePath": "staticwebassets\\Images\\Default_noticeicon-sm.jpg"
+    },
+    {
       "Id": "D:\\Projects\\SchoolProj_MVC_Iqra\\wwwroot\\Images\\bg.jpg",
       "PackagePath": "staticwebassets\\Images\\bg.jpg"
     },
@@ -259,6 +263,14 @@
     {
       "Id": "D:\\Projects\\SchoolProj_MVC_Iqra\\wwwroot\\Images\\log.jpg",
       "PackagePath": "staticwebassets\\Images\\log.jpg"
+    },
+    {
+      "Id": "D:\\Projects\\SchoolProj_MVC_Iqra\\wwwroot\\Images\\logonew.png",
+      "PackagePath": "staticwebassets\\Images\\logonew.png"
+    },
+    {
+      "Id": "D:\\Projects\\SchoolProj_MVC_Iqra\\wwwroot\\Images\\newligi-ieibemina.png",
+      "PackagePath": "staticwebassets\\Images\\newligi-ieibemina.png"
     },
     {
       "Id": "D:\\Projects\\SchoolProj_MVC_Iqra\\wwwroot\\Images\\section-bg-dark.png",

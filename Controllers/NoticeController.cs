@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿    using Microsoft.AspNetCore.Mvc;
 using SchoolProj.DAL.NoticeRepository;
 using SchoolProj.General;
 using SchoolProj.Models.DTO;
@@ -87,9 +87,14 @@ namespace SchoolProj.Controllers
                         IsFile = isFile,
                         UserName = noticeDTO.UserName,
                         ThumbNail = thumbnailPath,  // This will be null if no image was uploaded,
-                        ActionType=1
+                        ActionType = 1
 
                     };
+                    if (noticeDTO.ThumbNail == null)
+                    {
+                        notice.ThumbNail = "Images/Default_noticeicon-sm.jpg";
+                    }
+                 
 
                     // Save the notice to the database (assuming you have a repository method for this)
                     // Call CreateNoticeAsync and await the result
@@ -190,8 +195,13 @@ namespace SchoolProj.Controllers
                 var response = await noticeRepo.GetNoticeListAsync();
                 if(response.IsSuccess == true && response.Status == 1)
                 {
-                    var responseData = response.ResponseData.OrderByDescending(n => n.NDate);
-                    
+                    //var responseData = response.ResponseData.OrderByDescending(n => n.NDate);
+                    var responseData = response.ResponseData!
+                                       .OrderByDescending(n => DateTime.Parse(n.NDate).Year)  // Sort by year, descending
+                                       .ThenByDescending(n => DateTime.Parse(n.NDate).Month)  // Sort by month, descending
+                                       .ThenByDescending(n => DateTime.Parse(n.NDate).Day);   // Sort by day, descending
+
+
                     return View(responseData);
                 }
                 return View(new List<NoticeDTO>());
@@ -267,7 +277,11 @@ namespace SchoolProj.Controllers
                     if (notice.ThumbNail != null || notice.FilePath != null)
                     {
                         filePatTodelete = notice.FilePath;
-                        thumbNailTodelete = notice.ThumbNail;
+                        if (notice.ThumbNail != "Images/Default_noticeicon-sm.jpg")
+                        {           
+                            thumbNailTodelete = notice.ThumbNail;
+                        }
+                        
                     }
                 }
 
@@ -321,6 +335,7 @@ namespace SchoolProj.Controllers
                 return Json(response);
             }
         }
+
 
 
     }

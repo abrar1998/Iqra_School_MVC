@@ -461,3 +461,4 @@ D:\Projects\SchoolProj_MVC_Iqra\obj\Release\net8.0\refint\SchoolProj.dll
 D:\Projects\SchoolProj_MVC_Iqra\obj\Release\net8.0\SchoolProj.pdb
 D:\Projects\SchoolProj_MVC_Iqra\obj\Release\net8.0\SchoolProj.genruntimeconfig.cache
 D:\Projects\SchoolProj_MVC_Iqra\obj\Release\net8.0\ref\SchoolProj.dll
+D:\Projects\SchoolProj_MVC_Iqra\obj\Release\net8.0\SchoolProj.sourcelink.json

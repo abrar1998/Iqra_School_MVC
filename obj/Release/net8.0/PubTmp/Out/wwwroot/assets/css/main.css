@@ -102,14 +102,37 @@ h6 {
   z-index: 997;
 }
 
-.header .logo {
+/*.header .logo {
   line-height: 1;
 }
 
 .header .logo img {
-  max-height: 36px;
+  max-height: 46px;
   margin-right: 8px;
+}*/
+
+    .header .logo {
+        line-height: 1;
+    }
+
+        .header .logo img {
+            max-height: 46px;
+            margin-right: 8px;
+            width: auto; /* Ensure proportional scaling */
+        }
+
+@media (min-width: 768px) {
+    .header .logo img {
+        max-height: 70px; /* Increase for medium to large screens */
+    }
 }
+
+@media (min-width: 1200px) {
+    .header .logo img {
+        max-height: 70px; /* Further increase for very large screens */
+    }
+}
+
 
 .header .logo h1 {
   font-size: 24px;

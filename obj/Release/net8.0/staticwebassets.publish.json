@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "98YMtQqgWg8rR+7XQC01hPv0aAGqxp0UxEtNUS9vuMU=",
+  "Hash": "odnKuoV8aFK+qg8SxxvLRHz9rZgvZvzxi5wRcRo4vCE=",
   "Source": "SchoolProj",
   "BasePath": "_content/SchoolProj",
   "Mode": "Default",
@@ -73,8 +73,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "21dmsvb8jz",
-      "Integrity": "dhOeZc2HcA4TyUNJW0NS/9r0UN6KZvbsmbPxi5cqWWE=",
+      "Fingerprint": "q9tkcxdx6h",
+      "Integrity": "LpH11CwVTdEOF40H4SdX8W2QL6FfSGuivphz90wwjds=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\css\\main.css"
@@ -4238,6 +4238,27 @@
       "OriginalItemSpec": "wwwroot\\Images\\bg.jpg"
     },
     {
+      "Identity": "D:\\Projects\\SchoolProj_MVC_Iqra\\wwwroot\\Images\\Default_noticeicon-sm.jpg",
+      "SourceId": "SchoolProj",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Projects\\SchoolProj_MVC_Iqra\\wwwroot\\",
+      "BasePath": "_content/SchoolProj",
+      "RelativePath": "Images/Default_noticeicon-sm#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "8631d3u8m7",
+      "Integrity": "UL/l/aSqxLIFsWYqKH95/Ft8ltCQpENTGIb2trF1JUU=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\Default_noticeicon-sm.jpg"
+    },
+    {
       "Identity": "D:\\Projects\\SchoolProj_MVC_Iqra\\wwwroot\\Images\\image13341117.jpg",
       "SourceId": "SchoolProj",
       "SourceType": "Discovered",
@@ -4446,6 +4467,48 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\log.jpg"
+    },
+    {
+      "Identity": "D:\\Projects\\SchoolProj_MVC_Iqra\\wwwroot\\Images\\logonew.png",
+      "SourceId": "SchoolProj",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Projects\\SchoolProj_MVC_Iqra\\wwwroot\\",
+      "BasePath": "_content/SchoolProj",
+      "RelativePath": "Images/logonew#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "emvf25zp9y",
+      "Integrity": "Ksx3F4doMXHIbro0ZtuZeQbjLe4hhAoqlzCo5BBuWHI=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\logonew.png"
+    },
+    {
+      "Identity": "D:\\Projects\\SchoolProj_MVC_Iqra\\wwwroot\\Images\\newligi-ieibemina.png",
+      "SourceId": "SchoolProj",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Projects\\SchoolProj_MVC_Iqra\\wwwroot\\",
+      "BasePath": "_content/SchoolProj",
+      "RelativePath": "Images/newligi-ieibemina#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "j0l6062lfg",
+      "Integrity": "HRhDicTFoAfsBDrCK9mL/KYRhA+2MKKbxb6bZZHPFic=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\newligi-ieibemina.png"
     },
     {
       "Identity": "D:\\Projects\\SchoolProj_MVC_Iqra\\wwwroot\\Images\\section-bg.png",
@@ -8104,51 +8167,6 @@
   ],
   "Endpoints": [
     {
-      "Route": "assets/css/main.21dmsvb8jz.css",
-      "AssetFile": "D:\\Projects\\SchoolProj_MVC_Iqra\\wwwroot\\assets\\css\\main.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "13874"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"dhOeZc2HcA4TyUNJW0NS/9r0UN6KZvbsmbPxi5cqWWE=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Wed, 08 Jan 2025 07:26:50 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "21dmsvb8jz"
-        },
-        {
-          "Name": "label",
-          "Value": "assets/css/main.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-dhOeZc2HcA4TyUNJW0NS/9r0UN6KZvbsmbPxi5cqWWE="
-        }
-      ]
-    },
-    {
       "Route": "assets/css/main.css",
       "AssetFile": "D:\\Projects\\SchoolProj_MVC_Iqra\\wwwroot\\assets\\css\\main.css",
       "Selectors": [],
@@ -8159,7 +8177,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "13874"
+          "Value": "14353"
         },
         {
           "Name": "Content-Type",
@@ -8167,11 +8185,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"dhOeZc2HcA4TyUNJW0NS/9r0UN6KZvbsmbPxi5cqWWE=\""
+          "Value": "\"LpH11CwVTdEOF40H4SdX8W2QL6FfSGuivphz90wwjds=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 08 Jan 2025 07:26:50 GMT"
+          "Value": "Thu, 16 Jan 2025 06:48:21 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -8181,7 +8199,52 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-dhOeZc2HcA4TyUNJW0NS/9r0UN6KZvbsmbPxi5cqWWE="
+          "Value": "sha256-LpH11CwVTdEOF40H4SdX8W2QL6FfSGuivphz90wwjds="
+        }
+      ]
+    },
+    {
+      "Route": "assets/css/main.q9tkcxdx6h.css",
+      "AssetFile": "D:\\Projects\\SchoolProj_MVC_Iqra\\wwwroot\\assets\\css\\main.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "14353"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"LpH11CwVTdEOF40H4SdX8W2QL6FfSGuivphz90wwjds=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 16 Jan 2025 06:48:21 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "q9tkcxdx6h"
+        },
+        {
+          "Name": "label",
+          "Value": "assets/css/main.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-LpH11CwVTdEOF40H4SdX8W2QL6FfSGuivphz90wwjds="
         }
       ]
     },
@@ -19770,7 +19833,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 13 Dec 2024 10:35:41 GMT"
+          "Value": "Wed, 15 Jan 2025 10:15:50 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -19807,7 +19870,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 13 Dec 2024 10:35:41 GMT"
+          "Value": "Wed, 15 Jan 2025 10:15:50 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -24422,6 +24485,88 @@
       ]
     },
     {
+      "Route": "Images/Default_noticeicon-sm.8631d3u8m7.jpg",
+      "AssetFile": "D:\\Projects\\SchoolProj_MVC_Iqra\\wwwroot\\Images\\Default_noticeicon-sm.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "13418"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"UL/l/aSqxLIFsWYqKH95/Ft8ltCQpENTGIb2trF1JUU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 15 Jan 2025 05:48:53 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "8631d3u8m7"
+        },
+        {
+          "Name": "label",
+          "Value": "Images/Default_noticeicon-sm.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-UL/l/aSqxLIFsWYqKH95/Ft8ltCQpENTGIb2trF1JUU="
+        }
+      ]
+    },
+    {
+      "Route": "Images/Default_noticeicon-sm.jpg",
+      "AssetFile": "D:\\Projects\\SchoolProj_MVC_Iqra\\wwwroot\\Images\\Default_noticeicon-sm.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "13418"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"UL/l/aSqxLIFsWYqKH95/Ft8ltCQpENTGIb2trF1JUU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 15 Jan 2025 05:48:53 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-UL/l/aSqxLIFsWYqKH95/Ft8ltCQpENTGIb2trF1JUU="
+        }
+      ]
+    },
+    {
       "Route": "Images/image13341117.5iq3qpghbo.jpg",
       "AssetFile": "D:\\Projects\\SchoolProj_MVC_Iqra\\wwwroot\\Images\\image13341117.jpg",
       "Selectors": [],
@@ -25238,6 +25383,170 @@
         {
           "Name": "integrity",
           "Value": "sha256-rnedNRlJGxQRajUyXFt5xWqB5U1OUsLCAuj2F+lo7HI="
+        }
+      ]
+    },
+    {
+      "Route": "Images/logonew.emvf25zp9y.png",
+      "AssetFile": "D:\\Projects\\SchoolProj_MVC_Iqra\\wwwroot\\Images\\logonew.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "108221"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Ksx3F4doMXHIbro0ZtuZeQbjLe4hhAoqlzCo5BBuWHI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 08 Nov 2024 09:08:43 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "emvf25zp9y"
+        },
+        {
+          "Name": "label",
+          "Value": "Images/logonew.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Ksx3F4doMXHIbro0ZtuZeQbjLe4hhAoqlzCo5BBuWHI="
+        }
+      ]
+    },
+    {
+      "Route": "Images/logonew.png",
+      "AssetFile": "D:\\Projects\\SchoolProj_MVC_Iqra\\wwwroot\\Images\\logonew.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "108221"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Ksx3F4doMXHIbro0ZtuZeQbjLe4hhAoqlzCo5BBuWHI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 08 Nov 2024 09:08:43 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Ksx3F4doMXHIbro0ZtuZeQbjLe4hhAoqlzCo5BBuWHI="
+        }
+      ]
+    },
+    {
+      "Route": "Images/newligi-ieibemina.j0l6062lfg.png",
+      "AssetFile": "D:\\Projects\\SchoolProj_MVC_Iqra\\wwwroot\\Images\\newligi-ieibemina.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "72032"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"HRhDicTFoAfsBDrCK9mL/KYRhA+2MKKbxb6bZZHPFic=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 16 Jan 2025 09:02:03 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "j0l6062lfg"
+        },
+        {
+          "Name": "label",
+          "Value": "Images/newligi-ieibemina.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-HRhDicTFoAfsBDrCK9mL/KYRhA+2MKKbxb6bZZHPFic="
+        }
+      ]
+    },
+    {
+      "Route": "Images/newligi-ieibemina.png",
+      "AssetFile": "D:\\Projects\\SchoolProj_MVC_Iqra\\wwwroot\\Images\\newligi-ieibemina.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "72032"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"HRhDicTFoAfsBDrCK9mL/KYRhA+2MKKbxb6bZZHPFic=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 16 Jan 2025 09:02:03 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-HRhDicTFoAfsBDrCK9mL/KYRhA+2MKKbxb6bZZHPFic="
         }
       ]
     },
@@ -31086,7 +31395,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 08 Jan 2025 10:13:12 GMT"
+          "Value": "Thu, 16 Jan 2025 10:24:13 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -31123,7 +31432,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 08 Jan 2025 10:13:12 GMT"
+          "Value": "Thu, 16 Jan 2025 10:24:13 GMT"
         },
         {
           "Name": "Cache-Control",

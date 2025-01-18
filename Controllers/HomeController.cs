@@ -294,12 +294,17 @@ namespace SchoolProj.Controllers
                             notice.FilePath = filePathUrl ?? notice.FilePath;
                         }
                     }
+                    var responseData = noticeList.ResponseData
+                        .OrderByDescending(n => DateTime.Parse(n.NDate).Year)  // Sort by year, descending
+                        .ThenByDescending(n => DateTime.Parse(n.NDate).Month)  // Sort by month, descending
+                        .ThenByDescending(n => DateTime.Parse(n.NDate).Day);   // Sort by day, descending
+                    return Json(responseData.Take(6).ToList());
 
-                    var noticesToDisplay = noticeList.ResponseData
-                                                      .OrderByDescending(n => n.NDate)
-                                                      .Take(5)
-                                                      .ToList();
-                    return Json(noticesToDisplay);
+                    //var noticesToDisplay = noticeList.ResponseData
+                    //                                  .OrderByDescending(n => n.NDate)
+                    //                                  .Take(5)
+                    //                                  .ToList();
+                    //return Json(noticesToDisplay);
                 }
 
                 // Return an empty list if no data is present
@@ -336,8 +341,13 @@ namespace SchoolProj.Controllers
                             notice.FilePath = filePathUrl ?? notice.FilePath;
                         }
                     }
+                    var responseData = noticeList.ResponseData
+                        .OrderByDescending(n => DateTime.Parse(n.NDate).Year)  // Sort by year, descending
+                        .ThenByDescending(n => DateTime.Parse(n.NDate).Month)  // Sort by month, descending
+                        .ThenByDescending(n => DateTime.Parse(n.NDate).Day);   // Sort by day, descending
 
-                    return Json(noticeList.ResponseData.Where(n => n.Ncid == "3").ToList());
+                    //return Json(noticeList.ResponseData.Where(n => n.Ncid == "3").ToList());
+                    return Json(responseData.Where(n => n.Ncid == "3").ToList());
                 }
 
                 // Return an empty list if no data is present
@@ -519,7 +529,8 @@ namespace SchoolProj.Controllers
 
                 //return BadRequest($"{noticeResponse.Message} \n\n {noticeResponse.Error}");
                 var noticeResponse = await noticeRepo.GetNoticeListWithFilesAsync();
-                var notice = noticeResponse.ResponseData.FirstOrDefault(n => n.Nid == id);
+                var notice = noticeResponse.ResponseData!.FirstOrDefault(n => n.Nid == id);
+                notice!.ThumbNail = null;
                 return View(notice);
             }
             catch (Exception ex)

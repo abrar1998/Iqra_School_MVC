@@ -10,14 +10,14 @@
         "projectUniqueName": "D:\\Projects\\SchoolProj_MVC_Iqra\\SchoolProj.csproj",
         "projectName": "SchoolProj",
         "projectPath": "D:\\Projects\\SchoolProj_MVC_Iqra\\SchoolProj.csproj",
-        "packagesPath": "C:\\Users\\darab\\.nuget\\packages\\",
+        "packagesPath": "C:\\Users\\hp 1\\.nuget\\packages\\",
         "outputPath": "D:\\Projects\\SchoolProj_MVC_Iqra\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\darab\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\hp 1\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -42,7 +42,7 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
-          "auditMode": "all"
+          "auditMode": "direct"
         },
         "SdkAnalysisLevel": "9.0.100"
       },
@@ -74,7 +74,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
