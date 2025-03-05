@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "odnKuoV8aFK+qg8SxxvLRHz9rZgvZvzxi5wRcRo4vCE=",
+  "Hash": "YMk4621Mi3duTVQy6KKQZnAUqIsTupKdOlkfOwApfj4=",
   "Source": "SchoolProj",
   "BasePath": "_content/SchoolProj",
   "Mode": "Default",
@@ -5932,8 +5932,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "0zm8kkolcx",
-      "Integrity": "tLVfTPxqmwrXZjwTou1mnuWQTB5etvye988VQ5/hiPw=",
+      "Fingerprint": "3r8b2a0bt1",
+      "Integrity": "8ZRc1sGeVrPBx4lD717BgRaQekyh78QKV9SKsdt638U=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\template\\css\\bell.css"
@@ -31209,7 +31209,7 @@
       ]
     },
     {
-      "Route": "template/css/bell.0zm8kkolcx.css",
+      "Route": "template/css/bell.3r8b2a0bt1.css",
       "AssetFile": "D:\\Projects\\SchoolProj_MVC_Iqra\\wwwroot\\template\\css\\bell.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -31219,7 +31219,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1040"
+          "Value": "3"
         },
         {
           "Name": "Content-Type",
@@ -31227,11 +31227,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"tLVfTPxqmwrXZjwTou1mnuWQTB5etvye988VQ5/hiPw=\""
+          "Value": "\"8ZRc1sGeVrPBx4lD717BgRaQekyh78QKV9SKsdt638U=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 18 Dec 2024 10:20:21 GMT"
+          "Value": "Mon, 17 Feb 2025 05:14:05 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -31241,7 +31241,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "0zm8kkolcx"
+          "Value": "3r8b2a0bt1"
         },
         {
           "Name": "label",
@@ -31249,7 +31249,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-tLVfTPxqmwrXZjwTou1mnuWQTB5etvye988VQ5/hiPw="
+          "Value": "sha256-8ZRc1sGeVrPBx4lD717BgRaQekyh78QKV9SKsdt638U="
         }
       ]
     },
@@ -31264,7 +31264,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1040"
+          "Value": "3"
         },
         {
           "Name": "Content-Type",
@@ -31272,11 +31272,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"tLVfTPxqmwrXZjwTou1mnuWQTB5etvye988VQ5/hiPw=\""
+          "Value": "\"8ZRc1sGeVrPBx4lD717BgRaQekyh78QKV9SKsdt638U=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 18 Dec 2024 10:20:21 GMT"
+          "Value": "Mon, 17 Feb 2025 05:14:05 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -31286,7 +31286,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-tLVfTPxqmwrXZjwTou1mnuWQTB5etvye988VQ5/hiPw="
+          "Value": "sha256-8ZRc1sGeVrPBx4lD717BgRaQekyh78QKV9SKsdt638U="
         }
       ]
     },

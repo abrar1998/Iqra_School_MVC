@@ -1,12 +1,220 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\Projects\\SchoolProj_MVC_Iqra\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{FF79447B-7C2D-4A92-A65D-1631027E579F}|SchoolProj.csproj|d:\\projects\\schoolproj_mvc_iqra\\views\\shared\\_footer.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FF79447B-7C2D-4A92-A65D-1631027E579F}|SchoolProj.csproj|solutionrelative:views\\shared\\_footer.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF79447B-7C2D-4A92-A65D-1631027E579F}|SchoolProj.csproj|d:\\projects\\schoolproj_mvc_iqra\\views\\home\\privatepolicypage.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FF79447B-7C2D-4A92-A65D-1631027E579F}|SchoolProj.csproj|solutionrelative:views\\home\\privatepolicypage.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF79447B-7C2D-4A92-A65D-1631027E579F}|SchoolProj.csproj|d:\\projects\\schoolproj_mvc_iqra\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF79447B-7C2D-4A92-A65D-1631027E579F}|SchoolProj.csproj|solutionrelative:controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF79447B-7C2D-4A92-A65D-1631027E579F}|SchoolProj.csproj|d:\\projects\\schoolproj_mvc_iqra\\wwwroot\\template\\css\\bell.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{FF79447B-7C2D-4A92-A65D-1631027E579F}|SchoolProj.csproj|solutionrelative:wwwroot\\template\\css\\bell.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF79447B-7C2D-4A92-A65D-1631027E579F}|SchoolProj.csproj|d:\\projects\\schoolproj_mvc_iqra\\views\\home\\_notificationpartialview.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FF79447B-7C2D-4A92-A65D-1631027E579F}|SchoolProj.csproj|solutionrelative:views\\home\\_notificationpartialview.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF79447B-7C2D-4A92-A65D-1631027E579F}|SchoolProj.csproj|d:\\projects\\schoolproj_mvc_iqra\\wwwroot\\assets\\css\\main.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{FF79447B-7C2D-4A92-A65D-1631027E579F}|SchoolProj.csproj|solutionrelative:wwwroot\\assets\\css\\main.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF79447B-7C2D-4A92-A65D-1631027E579F}|SchoolProj.csproj|d:\\projects\\schoolproj_mvc_iqra\\views\\shared\\_layoutheader.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FF79447B-7C2D-4A92-A65D-1631027E579F}|SchoolProj.csproj|solutionrelative:views\\shared\\_layoutheader.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF79447B-7C2D-4A92-A65D-1631027E579F}|SchoolProj.csproj|d:\\projects\\schoolproj_mvc_iqra\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FF79447B-7C2D-4A92-A65D-1631027E579F}|SchoolProj.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF79447B-7C2D-4A92-A65D-1631027E579F}|SchoolProj.csproj|d:\\projects\\schoolproj_mvc_iqra\\views\\admin\\admindashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FF79447B-7C2D-4A92-A65D-1631027E579F}|SchoolProj.csproj|solutionrelative:views\\admin\\admindashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF79447B-7C2D-4A92-A65D-1631027E579F}|SchoolProj.csproj|d:\\projects\\schoolproj_mvc_iqra\\views\\shared\\_admin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FF79447B-7C2D-4A92-A65D-1631027E579F}|SchoolProj.csproj|solutionrelative:views\\shared\\_admin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF79447B-7C2D-4A92-A65D-1631027E579F}|SchoolProj.csproj|d:\\projects\\schoolproj_mvc_iqra\\views\\accounts\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FF79447B-7C2D-4A92-A65D-1631027E579F}|SchoolProj.csproj|solutionrelative:views\\accounts\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF79447B-7C2D-4A92-A65D-1631027E579F}|SchoolProj.csproj|d:\\projects\\schoolproj_mvc_iqra\\wwwroot\\assets\\js\\main.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{FF79447B-7C2D-4A92-A65D-1631027E579F}|SchoolProj.csproj|solutionrelative:wwwroot\\assets\\js\\main.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 1,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedHeight": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PrivatePolicyPage.cshtml",
+              "DocumentMoniker": "D:\\Projects\\SchoolProj_MVC_Iqra\\Views\\Home\\PrivatePolicyPage.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\PrivatePolicyPage.cshtml",
+              "ToolTip": "D:\\Projects\\SchoolProj_MVC_Iqra\\Views\\Home\\PrivatePolicyPage.cshtml",
+              "RelativeToolTip": "Views\\Home\\PrivatePolicyPage.cshtml",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAQwBIAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-02-20T10:23:06.813Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "D:\\Projects\\SchoolProj_MVC_Iqra\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "Controllers\\HomeController.cs",
+              "ToolTip": "D:\\Projects\\SchoolProj_MVC_Iqra\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "Controllers\\HomeController.cs",
+              "ViewState": "AgIAAPACAAAAAAAAAAAuwDoDAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-20T10:21:03.052Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "_Footer.cshtml",
+              "DocumentMoniker": "D:\\Projects\\SchoolProj_MVC_Iqra\\Views\\Shared\\_Footer.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_Footer.cshtml",
+              "ToolTip": "D:\\Projects\\SchoolProj_MVC_Iqra\\Views\\Shared\\_Footer.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_Footer.cshtml",
+              "ViewState": "AgIAADYAAAAAAAAAAAAAADkAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-02-20T10:19:52.777Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "bell.css",
+              "DocumentMoniker": "D:\\Projects\\SchoolProj_MVC_Iqra\\wwwroot\\template\\css\\bell.css",
+              "RelativeDocumentMoniker": "wwwroot\\template\\css\\bell.css",
+              "ToolTip": "D:\\Projects\\SchoolProj_MVC_Iqra\\wwwroot\\template\\css\\bell.css",
+              "RelativeToolTip": "wwwroot\\template\\css\\bell.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-02-17T05:14:00.95Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "_NotificationPartialView.cshtml",
+              "DocumentMoniker": "D:\\Projects\\SchoolProj_MVC_Iqra\\Views\\Home\\_NotificationPartialView.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\_NotificationPartialView.cshtml",
+              "ToolTip": "D:\\Projects\\SchoolProj_MVC_Iqra\\Views\\Home\\_NotificationPartialView.cshtml",
+              "RelativeToolTip": "Views\\Home\\_NotificationPartialView.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-02-17T05:03:03.845Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "_LayoutHeader.cshtml",
+              "DocumentMoniker": "D:\\Projects\\SchoolProj_MVC_Iqra\\Views\\Shared\\_LayoutHeader.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_LayoutHeader.cshtml",
+              "ToolTip": "D:\\Projects\\SchoolProj_MVC_Iqra\\Views\\Shared\\_LayoutHeader.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_LayoutHeader.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-02-06T07:07:28.813Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "D:\\Projects\\SchoolProj_MVC_Iqra\\Views\\Accounts\\Login.cshtml",
+              "RelativeDocumentMoniker": "Views\\Accounts\\Login.cshtml",
+              "ToolTip": "D:\\Projects\\SchoolProj_MVC_Iqra\\Views\\Accounts\\Login.cshtml",
+              "RelativeToolTip": "Views\\Accounts\\Login.cshtml",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAoAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-21T06:06:20.345Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "_Admin.cshtml",
+              "DocumentMoniker": "D:\\Projects\\SchoolProj_MVC_Iqra\\Views\\Shared\\_Admin.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_Admin.cshtml",
+              "ToolTip": "D:\\Projects\\SchoolProj_MVC_Iqra\\Views\\Shared\\_Admin.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_Admin.cshtml",
+              "ViewState": "AgIAADYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-21T05:47:27.481Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "AdminDashBoard.cshtml",
+              "DocumentMoniker": "D:\\Projects\\SchoolProj_MVC_Iqra\\Views\\Admin\\AdminDashBoard.cshtml",
+              "RelativeDocumentMoniker": "Views\\Admin\\AdminDashBoard.cshtml",
+              "ToolTip": "D:\\Projects\\SchoolProj_MVC_Iqra\\Views\\Admin\\AdminDashBoard.cshtml",
+              "RelativeToolTip": "Views\\Admin\\AdminDashBoard.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-21T05:46:51.772Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "main.js",
+              "DocumentMoniker": "D:\\Projects\\SchoolProj_MVC_Iqra\\wwwroot\\assets\\js\\main.js",
+              "RelativeDocumentMoniker": "wwwroot\\assets\\js\\main.js",
+              "ToolTip": "D:\\Projects\\SchoolProj_MVC_Iqra\\wwwroot\\assets\\js\\main.js",
+              "RelativeToolTip": "wwwroot\\assets\\js\\main.js",
+              "ViewState": "AgIAAIMAAAAAAAAAAAAgwD8AAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-01-18T11:02:30.255Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "main.css",
+              "DocumentMoniker": "D:\\Projects\\SchoolProj_MVC_Iqra\\wwwroot\\assets\\css\\main.css",
+              "RelativeDocumentMoniker": "wwwroot\\assets\\css\\main.css",
+              "ToolTip": "D:\\Projects\\SchoolProj_MVC_Iqra\\wwwroot\\assets\\css\\main.css",
+              "RelativeToolTip": "wwwroot\\assets\\css\\main.css",
+              "ViewState": "AgIAAGQCAAAAAAAAAAAAADoCAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-01-18T11:00:57.002Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "D:\\Projects\\SchoolProj_MVC_Iqra\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "D:\\Projects\\SchoolProj_MVC_Iqra\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABcAAABRAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-18T10:59:57.905Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
