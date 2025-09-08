@@ -5,7 +5,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>D:\Publish New\IEI Staging</_PublishTargetUrl>
-    <History>True|2025-02-20T10:28:54.6401941Z||;True|2025-02-14T11:53:54.3383787+05:30||;True|2025-02-13T16:24:11.0047238+05:30||;True|2025-02-06T12:43:26.4519578+05:30||;True|2025-01-21T12:22:54.9175322+05:30||;True|2025-01-21T12:13:59.4010687+05:30||;</History>
+    <History>True|2025-06-18T17:03:10.7031599Z||;True|2025-02-20T15:58:54.6401941+05:30||;True|2025-02-14T11:53:54.3383787+05:30||;True|2025-02-13T16:24:11.0047238+05:30||;True|2025-02-06T12:43:26.4519578+05:30||;True|2025-01-21T12:22:54.9175322+05:30||;True|2025-01-21T12:13:59.4010687+05:30||;</History>
     <LastFailureDetails />
   </PropertyGroup>
 </Project>

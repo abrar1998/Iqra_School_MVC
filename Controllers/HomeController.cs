@@ -144,6 +144,7 @@ namespace SchoolProj.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
         //this is default page which is being displayed initially when app loads
         //public async Task<IActionResult> Default()
         //{
@@ -833,6 +834,18 @@ namespace SchoolProj.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        [HttpGet("refundpolicy")]
+        public IActionResult RefundPolicy()
+        {
+            return View();
+        }
+
+        [HttpGet("termsconditions")]
+        public IActionResult TermsAndConditions()
+        {
+            return View();
         }
 
     }
